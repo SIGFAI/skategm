@@ -1,0 +1,2236 @@
+{
+  "id": "sigf/skategm",
+  "version": "6.0.0",
+  "name": "SkateGM",
+  "tagline": "Skate 3 in Garry's Mod: Skate 3's board physics, flick-it tricks and scoring on any map, with friends, minigames, a park editor and a skating gamemode.",
+  "kind": "mashup",
+  "games": [
+    {
+      "game": "gmod",
+      "role": "host",
+      "label": "Garry's Mod",
+      "engine": "Garry's Mod (Source, x86-64 branch) + binary module gmcl_skategm_win64 (Rust, SK8-ENGINE) + Lua add-on",
+      "apps": {
+        "steam": "4000"
+      },
+      "runtime": "x86-64 beta branch only"
+    },
+    {
+      "game": "skate3",
+      "role": "guest",
+      "label": "Skate 3 (Xbox 360)",
+      "engine": "player's own Xbox 360 copy, converted on their PC (not installed into)"
+    }
+  ],
+  "requires": [
+    {
+      "id": "gmod-x86-64",
+      "page": "https://wiki.facepunch.com/gmod/x86-64_branch",
+      "note": "Steam > Garry's Mod > Properties > Betas > x86-64: the module is 64-bit only"
+    },
+    {
+      "id": "skate3-xbox360",
+      "note": "your own Skate 3 for Xbox 360: the disc image (.iso) or an extracted folder with default.xex; converted once on your PC, nothing from it is shipped"
+    },
+    {
+      "id": "controller",
+      "note": "skating is controller only (Xbox, PlayStation, Switch Pro, ...); Steam Input off for Garry's Mod"
+    },
+    {
+      "id": "python",
+      "version": "3",
+      "page": "https://www.python.org/downloads/windows/",
+      "note": "for the one-time conversion with numpy and Pillow (pip install numpy Pillow); or use the author's SkateGM-Setup-6.0.exe instead",
+      "optional": true
+    }
+  ],
+  "install": [
+    {
+      "game": "gmod",
+      "strategy": "game-dir-snapshot",
+      "files": [
+        {
+          "src": "skategm_6.0.zip",
+          "dst": "{game}/garrysmod/lua/bin",
+          "unpack": true,
+          "contents": [
+            {
+              "path": "gmcl_skategm_win64.dll",
+              "sha256": "e9c19ef1a5e267aa690afaaf9049d7090e2febdb101bd63f6d4ac649ab45b579"
+            },
+            {
+              "path": "skategm_sdl2.dll",
+              "sha256": "b37740a72a7a9706216df9f0134894bb7a850b356fd149398c67d874cbcfacb4"
+            },
+            {
+              "path": "skategm_gamecontrollerdb.txt",
+              "sha256": "e606134678e6b3fdbdec9081289a1f0ba3e25d53b59b2aa3cdfe69bf491ad18f"
+            },
+            {
+              "path": "licenses/SDL2-LICENSE.txt",
+              "sha256": "97f35b302b361680ec1e891e95d2d52097bb95abff361434916d99dc1305f127"
+            },
+            {
+              "path": "licenses/SDL2-README.txt",
+              "sha256": "f17d8919136f9627468b4dffbd7bddd188ef2aaa8ed21914d2107d1c759e99d7"
+            },
+            {
+              "path": "licenses/SDL_GameControllerDB-LICENSE.txt",
+              "sha256": "97f35b302b361680ec1e891e95d2d52097bb95abff361434916d99dc1305f127"
+            },
+            {
+              "path": "exporter/README.md",
+              "sha256": "9338a06b2b5387d5543c7079b78e19dc011e3fa84ac63f3846eae4851496d818"
+            },
+            {
+              "path": "exporter/build.ps1",
+              "sha256": "b2b7ce4cce64c7829d476ac5754ea9531cba370c140c3c4bc08022f77e059421"
+            },
+            {
+              "path": "exporter/convert.py",
+              "sha256": "78cbff757f2200e0accf68c9a185c4740b5e4d487794ba2dfcb6925e632df1a0"
+            },
+            {
+              "path": "exporter/xiso.py",
+              "sha256": "051977241436a1780f2215fafaace641d7c5c0c2b47ea0cad0d47b53737d0ee0"
+            },
+            {
+              "path": "exporter/tools/add_onboard_ik_targets.py",
+              "sha256": "50814a3839971d7a8449aaf2c1b20d91a7a585cc291c9271d1595803616abf84"
+            },
+            {
+              "path": "exporter/tools/analyse_performance_trace.py",
+              "sha256": "7e1b9ddeeba4f95c19ca4e3a7aba54f9bee436e17fc2232e06599333bf1605d7"
+            },
+            {
+              "path": "exporter/tools/apply_default_skater_materials.py",
+              "sha256": "bcd6799d37e2c71be12f3d6c12682f8c7098bf389215f9000fea5f5664bd7a13"
+            },
+            {
+              "path": "exporter/tools/default_skater_retail_manifest.json",
+              "sha256": "9badc387a65cdb11224496e1335b93a61568d99dc7aec2154a23e98cb0e8f1c5"
+            },
+            {
+              "path": "exporter/tools/export_bevy_glb.py",
+              "sha256": "274f18901f8e4568252c91b52dd24368297f35667c29f526ba642489f9e77d30"
+            },
+            {
+              "path": "exporter/tools/export_kart_rider.py",
+              "sha256": "4342caef6a33944d7766ae22ea48975ca1194f241e9b8d1727ac1693eb831675"
+            },
+            {
+              "path": "exporter/tools/extract_default_skater.py",
+              "sha256": "6b2564368139842943c50c1506298024f646f0998f4cdb3782f5063339a6f590"
+            },
+            {
+              "path": "exporter/tools/extract_session_marker.py",
+              "sha256": "cab8092c5c7d6d4e5365135d69eac08e627d497bf7e42461ce1e42969c49dcb5"
+            },
+            {
+              "path": "exporter/tools/fit_kart_animation_preview.py",
+              "sha256": "d06e0bbb287fa028d3b2b78eb6f4f4a2008333147e197b88ca7df1071c6ebe2b"
+            },
+            {
+              "path": "exporter/tools/install_prepared_hud.py",
+              "sha256": "fce7b470133698a1cfdd06be00531827afac7438fff4d866169fcbef0a49e839"
+            },
+            {
+              "path": "exporter/tools/make_collision_fixture.py",
+              "sha256": "fc263e317aaac937fc3cec3d67df93b09a52dab9ae83d0612c6a8b99b2fda183"
+            },
+            {
+              "path": "exporter/tools/make_skate_demo.py",
+              "sha256": "1a4a35a87fcc4c0435be2cf2064b7ba23f685b7ac8469899e42595273f4c5340"
+            },
+            {
+              "path": "exporter/tools/package_mod.py",
+              "sha256": "d27e01f847cf6fdabd5e727096085cf3a8cf2acf709f24a0abd8d6026b1600c0"
+            },
+            {
+              "path": "exporter/tools/prepare_assets.py",
+              "sha256": "7fcdbe52755e739e568735f1f16074461f4656c46cd516fd47d52161b1439a4d"
+            },
+            {
+              "path": "exporter/tools/prepare_hud.py",
+              "sha256": "10b7f626d7cc11c8cbd7bdfdc0e1a4c7bc81a85c54cd369e8a5dd55df84f4f8c"
+            },
+            {
+              "path": "exporter/tools/prepare_mario_kart.py",
+              "sha256": "cc2295082546f137e48d74beb13a3ff3504d6afb058e3613a1ae4468d0cb17b6"
+            },
+            {
+              "path": "exporter/tools/prepare_runtime_huds.py",
+              "sha256": "b283bec387fe64ad3799e9b66a4d0e52111b4853d1461b02530627d58aa83a9b"
+            },
+            {
+              "path": "exporter/tools/preview_mixamo_animation.py",
+              "sha256": "71ed0da86c5ffcf738a7fee64c7a2033b2d653cdd93f4f4da8f022d7ea59a98d"
+            },
+            {
+              "path": "exporter/tools/publish_experimental.py",
+              "sha256": "e4b3361c71f716d94a7dcc5b7d0405efaeb43607eb7a8966afbcbce7ac89d1ad"
+            },
+            {
+              "path": "exporter/tools/requirements-setup.txt",
+              "sha256": "f76a1c323230a7b495ea35d9ab5817f7556d9273be8365de7bb791618b49215b"
+            },
+            {
+              "path": "exporter/tools/setup.py",
+              "sha256": "546c4ddb05d6b5f4dcbb373b711b7d2e716f494a8d68b8f74f6bc4cb38726607"
+            },
+            {
+              "path": "exporter/tools/update_install.py",
+              "sha256": "ae2b349f312e50b406b8a2e07221cd70e866c9587286a3d4680116fe25bd6381"
+            },
+            {
+              "path": "exporter/tools/update_processes.py",
+              "sha256": "d6107a0d58628db5f87d03e9c290e25a6bbdc21035a8d747afd8c708fb988938"
+            },
+            {
+              "path": "exporter/tools/updater.py",
+              "sha256": "25f77c4a4077cb80befdb39bf8ea9d7e0a5e68b62d070aed24e82fce554b9d5a"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/asset_exports.py",
+              "sha256": "240960903703825bca7af79908afac053ef0752454a598e690d050f0475313d1"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/backdrop.py",
+              "sha256": "bc805c77e615f66b4244d0999178b6e7cc774493a0af8cc0ccc944282027237f"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/build_map.py",
+              "sha256": "6b782d8cbb88fcbe718f4194b9b1a5a51ece3901b28b01567d9929c79c1b0505"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/character_glb.py",
+              "sha256": "849dc6cf04d0fd5c0ab1392f8f0472ecd2fd9f36b09221b0cf0683b26bf52cbf"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/character_lighting.py",
+              "sha256": "ce932f2e54ac02d8f6dac4fa312b8917a2c9f160240fb320022d3eaf76179328"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/customisation_catalog.py",
+              "sha256": "676548596e5d49b7843b424e30f07e1df81699c45d6b6799a34760a22287a3f0"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/customisation_library.py",
+              "sha256": "e0ed9f3b445156e749c25b7773c6df469ba1bbe4336261079641033795784fc5"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/customisation_native.py",
+              "sha256": "a877d2092640ab9b5f2c44f95009ef1338ae10d5335fed21a77ef40a821bec1b"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/customisation_profiles.py",
+              "sha256": "5185b0214f0b37404da190f760d4ea907a133e9b098f08c00b0337e5acd93b6f"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/customisation_worker.py",
+              "sha256": "d0a38207b2a2a25d31232935ffba56590f14e1587ae3c7a6326b3413ef9fcc7d"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/customiser_cache.py",
+              "sha256": "b0dc586a104e2e64b91f6d366d245fdc50ce6a0fb2de9bec2aa54754bd193206"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/customiser_lighting.py",
+              "sha256": "9a3b8ff8a349950f29220a6330ddc33b67336bddc8995ac94a70a955fc6f9649"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/customiser_setup.py",
+              "sha256": "7322d19562ae799f1410aecc746993172d8cbd27ac1e82aa99b47855d00181eb"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/dynamic_props.py",
+              "sha256": "801449244b7ddc13909938ed2888dc5158a37fd5fccd8d8c0df67ed89b46d8ca"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/environment.py",
+              "sha256": "8b01683f52cd5d0949474724602aa567f20aa02fe46d0b77540d893e0832e105"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/fast_refpack.py",
+              "sha256": "edcc5d550c8b57209783b7191308bf0948c450b40dcfe8b823c1e3b45f1d7650"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/finish_character.py",
+              "sha256": "f145685ebfa95d39d96eb52cc595b6faf63bb3b945a06b46944e9fbcb4a58c32"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/group_receipts.py",
+              "sha256": "4b2eb88e74da95f569bfe88dab6a06e4c3f7a78a5622101ecef015f38366105d"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/install.py",
+              "sha256": "100e632cee63d3bacff6bf7fea05456d6fae772599228df4b02e2ad3dac5ab89"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/irradiance.py",
+              "sha256": "1dba4dcab123f7056456cf2861d19c283b83dacae1d8c21e1549b798cfbe0fdc"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/librefpack.dll.a",
+              "sha256": "f709bf3d2f9af33263cccc21d966857f1084d3cb49531aaa14859bf143c8cf29"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/map_job.py",
+              "sha256": "f581de435abf7d9f745f5ddf5be1aa7ef91ddb6db356cf9e1106570596cc4bed"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/map_writer.py",
+              "sha256": "df86b87b95256ba02079d73053fe4bb2a3a3d6e35c6e39f1adb541a4d386e00a"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/marquee_assets.py",
+              "sha256": "bede9b78576e495023ea585b530a45e1a1f2f5d1c4b5c47be512e3f13ff99301"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/names.txt",
+              "sha256": "571019f08521e838604ff2faaa9300ccf69fe79833579206aab0f75c6f06f4f1"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/native_roster.py",
+              "sha256": "8167f9a276a83fb7a0199f070e25784fbfb376952ca424635f5d8857ded63ffb"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/ocean_pca.py",
+              "sha256": "a85418d87a3e8b33685a7bf310dc5cca9eff608728bc59d10065d2badad44efc"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/optional_content.py",
+              "sha256": "fbceace65c8d2e6c40a3c35a4bd8c64344541dc8fdf6e37b48f45ff20dfe98e0"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/physics_skeleton.py",
+              "sha256": "e645252206c68272655bd03b83c3d4736e98b2addf4f62b5ff79017498aaea7d"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/pipeline-equivalence.json",
+              "sha256": "394ff8669da560b77f76a6afac2836ca75830c4e493d8189374c84e1fa71798c"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/refpack_native.rs",
+              "sha256": "86a7b3f8580c515c03823ab89c79199ee7707c109b582c9dac6866060440c8c4"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/refresh_textures.py",
+              "sha256": "127899724adf5b4815ea8f9244d7b5c368b66cc913e3d81ea8c46f6dd667581b"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/render_parameters.py",
+              "sha256": "c2cd43ce6d01ae5757aff246bb44b2e81c983a07ecd31c97bbad74477579f59c"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/retail_character.py",
+              "sha256": "e37cbf63236894f1520e0d29df9642903353eee4d1cd427a44c0497cf1d711c0"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/retail_material.py",
+              "sha256": "27cfce7154e3779dbfaef35e58f727b405022c8ac501f65fdd9939055220829e"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/setup_state.py",
+              "sha256": "ca6739d4697bfe7d413e2e3760590b9542b2744fc974396fdd2f3a489579abb1"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/sky.py",
+              "sha256": "5d462335473dd130a8bcf22af93307a30079bf1050c52226d48640eb921fc442"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/teleports.py",
+              "sha256": "ce626e5314b7532fed04201e3ffa47ebb4a2bd0a5e87daaef1e44ac738b610d7"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/versions.py",
+              "sha256": "6e079d4d1ce64deb96fe3afc6cc704dda30fb034e2eef08208f9122eab75407d"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/vlt.py",
+              "sha256": "32cc8867925dfd161764e1ca8b5a5d86f0005664e36adb40500b99a3851cd249"
+            },
+            {
+              "path": "exporter/tools/mixamo_to_skate/check_package.py",
+              "sha256": "1b329813e77fbb7b1d19f24102f73e5ab52051cad68adb2202d784612e7ef491"
+            },
+            {
+              "path": "exporter/tools/mixamo_to_skate/converter.py",
+              "sha256": "b4a148995d850755151da2069b8e78c51b02003f5c6078515ddbd4a4c57e4f34"
+            },
+            {
+              "path": "exporter/tools/mixamo_to_skate/glb.py",
+              "sha256": "bd965171233948d8bc526253d7e9a168f4b885ec290fc4d6803e0597b33094b9"
+            },
+            {
+              "path": "exporter/tools/mixamo_to_skate/library_import.py",
+              "sha256": "ae959e53d346aae10377bfd9fb1f7dcc24f99e70703da4a3ac3b833aecc2268c"
+            },
+            {
+              "path": "exporter/tools/mixamo_to_skate/main.py",
+              "sha256": "2d3df47aae9e2a2911fb583eb2093be49867638025cba0ba783c198633bcfbd9"
+            },
+            {
+              "path": "exporter/tools/mixamo_to_skate/requirements.txt",
+              "sha256": "7c1cc912ac6f6cbcfd990d304cb9f59dd0841e9bbcdc07e40016b2aa115a038d"
+            },
+            {
+              "path": "exporter/tools/mixamo_to_skate/licenses/FBX2glTF.txt",
+              "sha256": "57e5156fcb2255e86198d74908887b3ab4b485f30a36c5e1a3340d1809e2af20"
+            },
+            {
+              "path": "exporter/tools/owned_game/NOTICE.md",
+              "sha256": "7a0ad758cd892613aef262a9a348ebc839d6fb32dcfedfb977b7a4241baf9cb0"
+            },
+            {
+              "path": "exporter/tools/owned_game/__init__.py",
+              "sha256": "2762c590d0c14b5f2c173ed47c9e3b969da2bb2a75bfd385b8f044e81136b6aa"
+            },
+            {
+              "path": "exporter/tools/owned_game/big.py",
+              "sha256": "a47362adb20b9af3bdef02c75639e812b336ad7f10f13f8512f26264d49318f0"
+            },
+            {
+              "path": "exporter/tools/owned_game/binary.py",
+              "sha256": "a9894e0cc7746a88c7f4c13a5af3b01b15b689fc3a7655dc408ca4c4e0586561"
+            },
+            {
+              "path": "exporter/tools/owned_game/refpack.py",
+              "sha256": "90ada65e5ad63ffbb1b579a18d1e5d9c02e1375fe0bb47ca6295be6a6bed3878"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_anim/PROVENANCE.md",
+              "sha256": "99b92b75a0b35e48f7db5d30aab99020a1f89d2bda846c15871f9981ca91d9cb"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_anim/abin_importer.py",
+              "sha256": "03fa5b17d2396c6dc516b322cc35829d631707ece0f6f9f9354bbe45126f5280"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_anim/rx2_skeleton.py",
+              "sha256": "8f77df4f96ab3af6a8c542cb88906c7bbd8c86c999e7c30998327f7f04e1dc8e"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/LICENSE",
+              "sha256": "3158217ea104a2982957e3d36e409fe3d8318b35f2641ed8a17025c0126f939f"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/__init__.py",
+              "sha256": "7a67cc4a972354cfb23ce555fab9fe6555689a586f2dacd06a348db865020a78"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/actions.py",
+              "sha256": "92c73fa541c82cc85a7250d7dfb6a90ce8d773d25e3a7a9a52cfef47a8cd51da"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/apt.py",
+              "sha256": "3fe4c10e414396455bdc0b6a3bdc43fd6fd10a2cb98010222be87597395f5725"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/big.py",
+              "sha256": "a8d7850745399b35ce1b5a0d50a87596ab0f6f728e41717b3d24ebc673b970df"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/binary.py",
+              "sha256": "49306002d19dcf2b9fbefb65ff8140c6168178c0c46cb864101d597cdd542295"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/bitmap_font.py",
+              "sha256": "15e46104913c2351baf372626f44cc7cbf4eb503396af5024db49e142aee06f0"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/geo.py",
+              "sha256": "002358ca56d161b565ee1002d2c214a566138aa61a0fc06068a0ae0591a87529"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/language.py",
+              "sha256": "7b91e57b5e2a09cf2a2cc0f5b47fb29ca964f675b4fc1f9e89c0c8b2888d9dd2"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/project.py",
+              "sha256": "6519e2bd20db2be4740b1254fdeec8f73a422f230c8e027c15b33f9701a8b2c3"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/refpack.py",
+              "sha256": "7f409b61756b1eb1ada139346f7c7a40428c3c943d6a686ab01dcbd0f3337bb8"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/rw4.py",
+              "sha256": "f7126bc08476724fa2c270af3a207bec4dff13acf92f3a9efb23d04fd2ee6d25"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/scene_graph.py",
+              "sha256": "910f61bbe0cabe68e9cf4c8582dd773833049a4627b282133687a7f9744fa899"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/timeline.py",
+              "sha256": "3e04522e2051cb08c4d0b2d9781e542fc1957600487e17cbf3d16594aab2209c"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/xenos.py",
+              "sha256": "8e1f8233a44a7291f1f26a0abe98adfe33bcdb93d24f4e011330afa815b53ba2"
+            },
+            {
+              "path": "exporter/tools/vendor/university/LICENSE-PROJECT.md",
+              "sha256": "3158217ea104a2982957e3d36e409fe3d8318b35f2641ed8a17025c0126f939f"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/analyze_retail_world_frames.py",
+              "sha256": "24b3287803b81bf315226d78df23aa044e03b92b67e73a21aa987c97736cc0c6"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/analyze_skate2_lightmap_basis.py",
+              "sha256": "307e5004e75d01353afc171926016376ffc0b8792cc0974e343295f4e983a88a"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/attach_retail_collision_identity.py",
+              "sha256": "c28d48ed682a66c2b4de213a5cf7855ec59f012502d3011cebfde1afd77c8b60"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/audit_university_collision.py",
+              "sha256": "a80fc2d253d7a0582fec9308f93cc6e17ca619684a4af05903195a6c292107a6"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/build_retail_collision_archive.py",
+              "sha256": "58722c4e5cb63d27aeeb7297f2f8433641bc79db3f87fffd497dbb0941bba688"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/build_skate2_lightmap_aliases.py",
+              "sha256": "28a25288dbe26cc1ca2ad97e36bdbe22ad6a5f8c6eeedbd64e1117082715ec3d"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/build_university_collision_probe.py",
+              "sha256": "329e544840dd860415a7a2061107a7beec0fbae8eb380509e1626d360436cc16"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/compare_university_material_fix.py",
+              "sha256": "08ddbc541eadc1dbe0789223fbcdc6570dbd387c8467673f6d296165cb0b6d8e"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/embed_retail_collision_archive.py",
+              "sha256": "f6ea2c957e9686cf7b59d37d3166d772d71b7eaf3d90c4c13c7a12f2827039b3"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/export_skate2_skybox.py",
+              "sha256": "e23cb8d4e98f0c3c957d1e1b79f177291fea512a7aad4ab96debb9cddf49278d"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/extract_skate2_big4.py",
+              "sha256": "0cbd02dee7f5d9a6d5e348326bcfa94b7caccc8dc7b0a4e31f5ea5f0e9389038"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/extract_skate2_shader_ucode.py",
+              "sha256": "ac94c9edc12c57c9fbf24fcad52608137a13469ed89bc7d958310f868e21e024"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/inspect_university_point.py",
+              "sha256": "2cc2664be5863feb5ed56a562a05671c86e6a4b9999e13c6532fd90dc42742e0"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/prepare_hawaiian_dream.py",
+              "sha256": "3841ade96639c49209608a9f92e37d99c7f90875ebb064c493c4304fec725cfb"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/prepare_mega_park.py",
+              "sha256": "7c335a95b39dc954e66302fed565b6d225374d3669c6cab0b54cfadb3e27b1ef"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/prepare_skate2_bam.py",
+              "sha256": "4f00402d0b0fb77530221202cbb5c8a4911f2159a0d514255cd008cf7270a3d4"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/prepare_university.py",
+              "sha256": "02d2d6a49532a39a25d0987278ae5d1e854e473ea847c536ab0bfd78c59f4098"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/retail_collision_mesh.py",
+              "sha256": "edac10dff9ffa9163e3ac9fcc9ac3b38e4b5ff0c4908252a164091330c810b7f"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/retail_grind_splines.py",
+              "sha256": "cd18c15683292f8e527e2ada87f8e0bf2dc6788d63ef74967810699ac8603759"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/retail_lightmap_uv.py",
+              "sha256": "6e455e4830161028855a34a691bd8af0cb9253ae31f2db9f0052f515c2c20cc7"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/retail_texture_decode.py",
+              "sha256": "133f1f64b7de9af0a00ba2a5dce035afe61b281d33b77c880a942e6594572b27"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/skate3_streams.py",
+              "sha256": "18d5b6e860259e5ca2348d902d8ecacb3f52318217d682f2b8bc6c3ffd1e0975"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/verify_skate2_lightmaps.py",
+              "sha256": "f42c13935ce93a1d1fa66bbbf361af737699e7f0f840c8452235f7644f29c85b"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/verify_university_b5g6r5.py",
+              "sha256": "f9a496dbf9bafd7bbdcd90be495a4bb8a28ca5d60aeb330c9a5aefd7505d1720"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/verify_university_collision.py",
+              "sha256": "73e8ec01c3fe86345ee567611e2655e55a6ea10a3e6af5b0eb749e9a13f214e1"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/verify_university_grinds.py",
+              "sha256": "3f00702194104546ed4b524265ae1893ed530b50f8edec9990dd3b035b6748d2"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/verify_university_lightmaps.py",
+              "sha256": "a6c4d54ecd508f2bcf52d0bd3a80b5cb2d67c5c29fd4cd530d7e57761633288c"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/verify_university_material_channels.py",
+              "sha256": "b93cecb4f5e43f44f29ccef553fbf9adcbee9df761ec3d72bdab8145c1df7ba4"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/verify_university_retail_materials.py",
+              "sha256": "180a61cf2b2f6c1ca1beb23b170b836564fb1b25658d6a0bea2b82825b44f030"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/verify_university_world_frames.py",
+              "sha256": "d6562e30c775830ad3739173249975c024244e9fa2b0fa8b79ebf29bdf3d389d"
+            },
+            {
+              "path": "exporter/tools/vendor/utt/LICENSE",
+              "sha256": "042d55c27d3dbf5847cd222e9a468d1e8ae0fda35337d5d0fc14e9da5b70e6bd"
+            },
+            {
+              "path": "exporter/tools/vendor/utt/rx2_fast.py",
+              "sha256": "38daf5c28cb4caa2cbcd54603c7e219418c1c19fc234e540d5778160009058c1"
+            },
+            {
+              "path": "exporter/tools/vendor/utt/rx2_parser.py",
+              "sha256": "9afe28cae8fc16bb698f482d12d3c5928f175b0286cb643da6af2b4caa7c7925"
+            },
+            {
+              "path": "exporter/tools/vendor/utt/mdl_parser/__init__.py",
+              "sha256": "1c0dbdaea00e0dbe37af40b92f75e039356f5ae1824fcb89056ad78fc19bc55a"
+            },
+            {
+              "path": "exporter/tools/vendor/utt/mdl_parser/errors.py",
+              "sha256": "08721922297814974194cabb4b925d13a773d420e1abb72d07167a3288f0cdda"
+            },
+            {
+              "path": "exporter/tools/vendor/utt/mdl_parser/model.py",
+              "sha256": "4627ed47c04f000e91117883e9bd272e3930cd8cddd6bd304380eefc943ffcf6"
+            },
+            {
+              "path": "exporter/tools/vendor/utt/mdl_parser/parser.py",
+              "sha256": "c9a88edcd3ed525b4ab56824edefb543b1bfe15610d594ec0352e99d3f480a60"
+            },
+            {
+              "path": "LICENSE-THIRD-PARTY.md",
+              "sha256": "ed04bc7159bb8ffd3d3ad147b092f116b8bfe96e81621884df49196c62c79321"
+            },
+            {
+              "path": "engine/LICENSE",
+              "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+            },
+            {
+              "path": "engine/NOTICE-mashup",
+              "sha256": "df07306477d8728ff4771e5692050e01df3b0d2df7f461a27749fe2c7b44ff2c"
+            },
+            {
+              "path": "engine/README.md",
+              "sha256": "9519fa1a42f099469cd42a7e0aec6f6a51258723dab6f267fa1b782aa76c1f79"
+            },
+            {
+              "path": "README.md",
+              "sha256": "10f33a9bf2ba054682aea863674671604342e1b986db892ccf68ea2513074d35"
+            },
+            {
+              "path": "skategm/addon.json",
+              "sha256": "86498dd0d03aa5de9d1df9212c2f899151d957306eb0d71aea60aa846f8e2e28"
+            },
+            {
+              "path": "skategm/gamemodes/skategm/icon24.png",
+              "sha256": "37e20a7595e0448f0b07dca74fbb846a3365a60d583cc8d9dc44a9ccd205447e"
+            },
+            {
+              "path": "skategm/gamemodes/skategm/logo.png",
+              "sha256": "454e72b437acfbf615bb88c7c312b6eac82883fee49d2d8e669e2f49c2d6f1e3"
+            },
+            {
+              "path": "skategm/gamemodes/skategm/skategm.txt",
+              "sha256": "5033a958df8a267444378e1a76958e0fd73352e19c0375a19b8cf9da7d0c3f4c"
+            },
+            {
+              "path": "skategm/gamemodes/skategm/gamemode/cl_init.lua",
+              "sha256": "db40b0e6016606d53d7c038740256d62ee587fe33c690841993a8dcb0ac3bc8a"
+            },
+            {
+              "path": "skategm/gamemodes/skategm/gamemode/init.lua",
+              "sha256": "85444c319aa34de7c73b215a9a26096e86cb216c32afe464aa8b117b97959678"
+            },
+            {
+              "path": "skategm/gamemodes/skategm/gamemode/shared.lua",
+              "sha256": "006bb7d44607cab23784a65db5a1ecafe65fb5c3a64e227992f2ce052b98eebd"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_bingo_load.lua",
+              "sha256": "22b83bf071451469607f4352a62a13ec247adc08daaa16e1cbfb891b8f38e116"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_board_load.lua",
+              "sha256": "80153027e4d17f0137ad69831018597e29fec72f39bfcf38992237eada4b5621"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_boombox_load.lua",
+              "sha256": "44c05ac72f6ba65547a51ee41f241081f88df0f036803064ff4ef8437f313336"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_hom_load.lua",
+              "sha256": "5128fe6ac6d0b321f98e34b9d5e5b9f301845445f494afe9d5fed64f86bdd06a"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_knock_load.lua",
+              "sha256": "f6be7607e4afbcb8f022dce223f4ad76203c092bc4d0289b73a16a813d6668ba"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_melon_load.lua",
+              "sha256": "5b5c69ea964d469ad79a442950784348816c066119ed7d01869c4b7583107138"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_modes_load.lua",
+              "sha256": "77fba6bacd7500bfff853b4b5a4bdf8711ed9a51bd7a09b8ef58ad6f0bf27c34"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_ots_load.lua",
+              "sha256": "7a255972e4fdf7373c7eec3a83782b24afbd145f23505051f4e4951f4e3286ee"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_parts_load.lua",
+              "sha256": "45c42e19da1fa6ef7029b27cf98172964ab5656d489f11bbb5dcc33be09de65a"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_potato_load.lua",
+              "sha256": "62ee69cd055e2dc7c146541467c06f5cc2404818d6a706fe0f99454dc1e51213"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_race_load.lua",
+              "sha256": "1066779f788b60dad5b52d9e12a8261cd7af4b2386b5144f285798279aec4cad"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_royale_load.lua",
+              "sha256": "e10d77d841b72facd3a63610691de9912e0d3ad115722f8fa6979b00a1eef4cc"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_snake_load.lua",
+              "sha256": "f645c80cddeaf713c917175e568bad5091daa5cb09e40b56de99f9b2b78589dc"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_ui_load.lua",
+              "sha256": "8e15a03ddeda8a2522911d5cfcbec8eaa388df8422b38ed3487943f4194df900"
+            },
+            {
+              "path": "skategm/lua/autorun/client/skategm_cl.lua",
+              "sha256": "cfad1a32d07b1d0735a0b63befbbf41330438cb89a93a4f2f07953de0535e86a"
+            },
+            {
+              "path": "skategm/lua/autorun/server/skategm_sv.lua",
+              "sha256": "5d767b93e5e34839029e3aff0150328a9bfd85f97227201fa74726dd1ec5a2e5"
+            },
+            {
+              "path": "skategm/lua/entities/skategm_boombox.lua",
+              "sha256": "53e7ba23435be5f6a80d37d3e456346e6e4467d994ee0edc3a80651c6d899160"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_board_model.lua",
+              "sha256": "3141133fd700c9489014159a14a031945172f94e889c066e8071dda91bb738d8"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_hud.lua",
+              "sha256": "e71a92e930881a26f5477656eb9d5971b08d162e798a6c5282503f7c3bf6e3cf"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_infmap.lua",
+              "sha256": "ff841563a64600398578611ff908be6fde6e7b91115756121ab4c57cb926d405"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_marker.lua",
+              "sha256": "14058cfb9829e1053d37e19465a1216fa9fcc89184328ce0dc19a5c89fa56aa0"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_replay.lua",
+              "sha256": "4978e2fa1b1e62cd49eef5007f04b59d76de73fbb3f4caa044ebf7627b00a5ca"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_replay_cam.lua",
+              "sha256": "58d96a1181f6caba0f8a02870e2f78964ec09fae397168e652e97e0ea6651f4c"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_replay_export.lua",
+              "sha256": "6b4b00f3e2c23b24f6871bf3cb632e24afa42942f7e5b4369ae2b3a79aef45f0"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_replay_fx.lua",
+              "sha256": "759751614918c8d8494d6bb94b085cf9dee428d6507ceb5ead59ef28f6b03ea6"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_settings.lua",
+              "sha256": "31d6498d3e37125d2342997f4ac7bf5304842caced611a57f7096c015a6fd70a"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_sound.lua",
+              "sha256": "ee255cec13207feb5cce6f046577f4d631ad341bdd565a30f074ac20537c4e8a"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_trace.lua",
+              "sha256": "ca949f62a4485f7b5ace713f6aed40a888148a3029cdbe7458f78f68bdbc41ae"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_water.lua",
+              "sha256": "0c8e2f759e5c0eb510e54e61402c23beb1105bf8111a5968e9ee6a986a9ce7b6"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_why.lua",
+              "sha256": "e7d7ef473f3c9433f4d7b6e4c3fb71735d5ce4fc7260f5d2786c3b7131829aee"
+            },
+            {
+              "path": "skategm/lua/skategm/sv_infmap.lua",
+              "sha256": "a4af4b149b8f73ce5ac84b4ac0b56a9a470b1e62de286042f1e6745acaf51210"
+            },
+            {
+              "path": "skategm/lua/skategm_bingo/cl_bingo.lua",
+              "sha256": "869b42ec19abe6d74f9b67044021e50378eeb8c56be41b9c5832e8e1af11bab1"
+            },
+            {
+              "path": "skategm/lua/skategm_bingo/sh_bingo.lua",
+              "sha256": "c749cf9a0e376e71e4639922d98011c21c397d31d5750a02aa42c86839c65b2e"
+            },
+            {
+              "path": "skategm/lua/skategm_bingo/sv_bingo.lua",
+              "sha256": "46bc885bab7465493d4b3895a1498886ffd9a5169e1e8ab9ee02f449de83f326"
+            },
+            {
+              "path": "skategm/lua/skategm_board/cl_board.lua",
+              "sha256": "891464e8aafe2d116a93b741f8b22ac8f5fe8dd9e8254eb572399e79124dc878"
+            },
+            {
+              "path": "skategm/lua/skategm_board/sh_board.lua",
+              "sha256": "874de472c5f79ce1989e97224aac5845d07387e04ff82bf536854d5c39289871"
+            },
+            {
+              "path": "skategm/lua/skategm_board/sv_board.lua",
+              "sha256": "06c1f6a0657f96828cd878bfcf63c6d939a9cd90722191392f2c1c157db09028"
+            },
+            {
+              "path": "skategm/lua/skategm_boards/classic.lua",
+              "sha256": "10e5d4fc05481ac73df83c9e671013dd706f1ef26f29e1653d4a0b9d58d7066b"
+            },
+            {
+              "path": "skategm/lua/skategm_boombox/stations.lua",
+              "sha256": "476b7b58441a815c63392a26ff95944a02c212d188ba4c16d472cbeb5f1eb77e"
+            },
+            {
+              "path": "skategm/lua/skategm_fx/sparks.lua",
+              "sha256": "1c15f817e2582bf10b4e149d5ec36d7e9bb3839fcf6006e3b202e01716f593da"
+            },
+            {
+              "path": "skategm/lua/skategm_fx/trails.lua",
+              "sha256": "33bd6adf43339087d289d5bb4571a16505597c317d2c0cfad4778539b508c40d"
+            },
+            {
+              "path": "skategm/lua/skategm_fx/underglow.lua",
+              "sha256": "81bfb8354ff773b4061bd603045684d01b42ed4abd6e5a8a8a1c1c5cf8b495e6"
+            },
+            {
+              "path": "skategm/lua/skategm_hom/cl_hom.lua",
+              "sha256": "9cf248afd59d0f41861738a1568e14eaa9234ee67cc3319e5006acf1c0afa03b"
+            },
+            {
+              "path": "skategm/lua/skategm_hom/sh_hom.lua",
+              "sha256": "3cede9bdf0f78afe904605d63108ff230b34ffc8045b2608b0492298732a368c"
+            },
+            {
+              "path": "skategm/lua/skategm_hom/sv_hom.lua",
+              "sha256": "050a622672ff271746a5a8f80f3f757b88c9b39227ea994a810951d3bb04d672"
+            },
+            {
+              "path": "skategm/lua/skategm_knock/cl_knock.lua",
+              "sha256": "e33e443d497b5606c8372e2bc4dee3f4b36cc8f420ea847ffd4e85703ce827ea"
+            },
+            {
+              "path": "skategm/lua/skategm_knock/sh_knock.lua",
+              "sha256": "dfc9755ee1dfc88a66dbaca647ee116dc40ee485ea0219b10e1d08684a578c03"
+            },
+            {
+              "path": "skategm/lua/skategm_knock/sv_knock.lua",
+              "sha256": "f8390a0ccf8879342c7c2143e4e551e2bdfa2ece4680a6e65fa25d1888638cea"
+            },
+            {
+              "path": "skategm/lua/skategm_melon/cl_melon.lua",
+              "sha256": "948870d01a0558006ccd2a90d13de87a8b63921dabded910de35eb54d8aec3fd"
+            },
+            {
+              "path": "skategm/lua/skategm_melon/sh_melon.lua",
+              "sha256": "2b7c293ffac2e67182e8687987ec6948fe644dc2e55685b2f7c0e02c961e60ae"
+            },
+            {
+              "path": "skategm/lua/skategm_melon/sv_melon.lua",
+              "sha256": "00982c680560b7a07ccb09de5782b9869b9428d9aa21f12e52ed296105fe051b"
+            },
+            {
+              "path": "skategm/lua/skategm_modes/cl_menu.lua",
+              "sha256": "e7a48de215ba1b6cdc0bfb2a3e8acd20a3bcaf96c528c7b0eb588897ea1167f0"
+            },
+            {
+              "path": "skategm/lua/skategm_modes/sh_modes.lua",
+              "sha256": "7582ba3b2d1ee6746bd2f55054a48ebfed45900cbde34d1c65569cef0a6987b5"
+            },
+            {
+              "path": "skategm/lua/skategm_ots/cl_ots.lua",
+              "sha256": "e039cac1b0d6d79492e88f076c99e5ffe11ec3eb84c30c7dda3114d445f08903"
+            },
+            {
+              "path": "skategm/lua/skategm_ots/sh_ots.lua",
+              "sha256": "d63d1b047f93b250553229af0de28c95077aa4214aa526da9ca0bda11d212cdf"
+            },
+            {
+              "path": "skategm/lua/skategm_ots/sv_ots.lua",
+              "sha256": "23a0d4a065570ba468733136bef526075e718fa65c15802757a32e3d2632b823"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/cl_editor.lua",
+              "sha256": "5240fc1d6e0ceae84525edd5195c7b529a526d172b18f4fcd1862870a3c9a3ee"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/cl_park.lua",
+              "sha256": "572065aacbe11f00ba0822e18a9692942e0b19ae7c4b19908947a327139c7a86"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/cl_saves.lua",
+              "sha256": "5b5be7e873117eaafffc0e1aab5fe472afa8238ed45463b842010dfafe86297f"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/sh_parts.lua",
+              "sha256": "7dc863cca7a5d6f4e0c0d3f894965a8a82beec3d2108ecdc6f3fc20542157ad2"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/sv_editor.lua",
+              "sha256": "173c2111c659e3574917a3d0cf31dc3354c47d7e7dab8467ee555a0944efa581"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/sv_park.lua",
+              "sha256": "253055fd6c4913efd31ef04ad353e40aa2ac38b884794433a83e49a854b66f3f"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/bank.lua",
+              "sha256": "3f1b48d3b068598f1eb0d17eea3c4e9be0298a640dc6269be99dd863118f85e8"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/deck.lua",
+              "sha256": "52488e381ad3bb99bb59a0abf0922fee632527a868e7b7ff5e36678a3f034f2b"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/flat_bar.lua",
+              "sha256": "444a6d10969ed06c0a41c8feeb7a6c5ea93c8213e4d534bed83c2894150d91d4"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/funbox.lua",
+              "sha256": "773f17b480c46ebc1c3b838ca7fc7159011501e7ef02ce8b223a47bd62915bf7"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/half_pipe.lua",
+              "sha256": "9b72f837e0f7a5bf7420df3203a510637e54c58430788bb09c2aa5e5e7d83c66"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/kicker.lua",
+              "sha256": "409717102f6cdde54edd82846724b8fc265314cec9191176b217703272895904"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/launch_ramp.lua",
+              "sha256": "03c90283e63487f1cad562d7a8c57f1d99eaa0590c1c58d4216144207c3d137c"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/ledge.lua",
+              "sha256": "70566f1641405987ca9e6a5702c22c9a5b61abcae21d7093a01b88033c019139"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/manual_pad.lua",
+              "sha256": "550d577b56fc18c3189df710ef96148b29d7177b237ef7fefc1b0118b166e455"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/quarter_pipe.lua",
+              "sha256": "13d2988f59f20e995f094be2423893a1b54d52c05f315b79be2eb435bbe5752e"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/spine.lua",
+              "sha256": "924b31f70209e5e2ba911cc282f6085f2a3aef01312c42db70d6125a69ed540e"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/stairs.lua",
+              "sha256": "38ab75560ea9b7bd7e705e18d7f7b38bbcd6849e55ea22b1dd8157226500e82d"
+            },
+            {
+              "path": "skategm/lua/skategm_potato/cl_potato.lua",
+              "sha256": "632aa5e29367875758c989477d7a5aa09923b169e52bc485dc44f26dccc314b5"
+            },
+            {
+              "path": "skategm/lua/skategm_potato/sh_potato.lua",
+              "sha256": "f5e982bfe5ab064efe313ebf0a5eb56e40d3982819303a381ad9d0f0707167c5"
+            },
+            {
+              "path": "skategm/lua/skategm_potato/sv_potato.lua",
+              "sha256": "3c8d16b768cd7cb0e72293d98326e0f6c038e465d344917f6190f161d15493e2"
+            },
+            {
+              "path": "skategm/lua/skategm_race/cl_race.lua",
+              "sha256": "d94b2fd3940cbbbb4f348fb6745505e0ad4381ab61be2608f40caa5c5f4d4c4f"
+            },
+            {
+              "path": "skategm/lua/skategm_race/sh_race.lua",
+              "sha256": "e08cc9eee2dcd846aa0faad6549079f55ffa86f5e41efbb0fcdbbf82d4b8fc07"
+            },
+            {
+              "path": "skategm/lua/skategm_race/sv_race.lua",
+              "sha256": "e16778825632f176701b835d3c604b639696260206b66a58e6b47639f4316da7"
+            },
+            {
+              "path": "skategm/lua/skategm_royale/cl_royale.lua",
+              "sha256": "ece37b6756d8d99fbb9b1fd4e6dd0204862ff285bbe6079b5082d5c68db0c41d"
+            },
+            {
+              "path": "skategm/lua/skategm_royale/sh_royale.lua",
+              "sha256": "d7dddaf8e17ade8990c8929cc72187ff2a45629ee62ba8d73a30ed1d11048646"
+            },
+            {
+              "path": "skategm/lua/skategm_royale/sv_royale.lua",
+              "sha256": "ac73071737a3d405cbebb4d2ea6c792dceb3e75a6df90c63ce776fdc58fb5f7b"
+            },
+            {
+              "path": "skategm/lua/skategm_snake/cl_snake.lua",
+              "sha256": "265a7556342388f46bff4d5afd4af3011b970aeee832788abaaba2a5b9709caf"
+            },
+            {
+              "path": "skategm/lua/skategm_snake/sh_snake.lua",
+              "sha256": "83f09d8f4968c4f1507d7a86b548a10a3dc3b97b0327c34390e4570b2bbcd20b"
+            },
+            {
+              "path": "skategm/lua/skategm_snake/sv_snake.lua",
+              "sha256": "965f2d1896f1c536c67a4d8ebb7bb827c09a7549c639388249a1173caa1216c2"
+            },
+            {
+              "path": "skategm/lua/skategm_ui/cl_map.lua",
+              "sha256": "8246f93af49dd9398620018175934e874a69e650d8dec044d0109b0e3f018f4d"
+            },
+            {
+              "path": "skategm/lua/skategm_ui/cl_pad.lua",
+              "sha256": "28ff9be686289973cbe3482222de7fed56f1864484127ec9665616898349676f"
+            },
+            {
+              "path": "skategm/lua/skategm_ui/cl_settings.lua",
+              "sha256": "c60ae21f95a58bcbf94f88cf18bb9675d858232cf97426c26a34aab2550a35be"
+            },
+            {
+              "path": "skategm/maps/sgm_warehouse.bsp",
+              "sha256": "85ef3cab3acae175a35ba8fca28fa89215493f435b2c0afcf4f73f3cbe66a903"
+            },
+            {
+              "path": "skategm/maps/thumb/sgm_warehouse.png",
+              "sha256": "5be2e281e2d366c4d704367bea18b6e68bfd0394ceeb224f54517b4101f7d62b"
+            },
+            {
+              "path": "skategm/materials/skategm/logo.png",
+              "sha256": "454e72b437acfbf615bb88c7c312b6eac82883fee49d2d8e669e2f49c2d6f1e3"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/camo.vmt",
+              "sha256": "f7c54de5dbca2fd3a98f80840744b270a504ec83725b5debd27d374e50b09bd7"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/camo.vtf",
+              "sha256": "416ea47528c4d8d05e204d7280a17dcb39d47cc8d1c53ca75ce0df02edc64135"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/checker.vmt",
+              "sha256": "615eee7ff589d6a0bd7aecb64bdd66a385df1c5ced6d0c5a8d79083c7442312f"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/checker.vtf",
+              "sha256": "98a48c47eedcdc1ae7f928d21bb6a2446d9fbca4de42bac292c9c3dcf5cdf5ce"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/diagonal.vmt",
+              "sha256": "391b5ce436c4932aa1ac27fdd8d777ba03714384cbe57434d8caf3fec9ba37ba"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/diagonal.vtf",
+              "sha256": "24d8d7dcb6bb5d8cf49fb0faebf491505a7b98eb14890c28b972453498e50093"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/dots.vmt",
+              "sha256": "87250b90a69fb3f1ddc9b172ff92e007304884f7f901fb64773d1a4f393ae865"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/dots.vtf",
+              "sha256": "ae2cbce804c7544ed03120a91be0a15e8effa763f0d499a3211dcb2d5aae7d87"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/grid.vmt",
+              "sha256": "396b5a358e5c8a7c862d6e8d7a2f34845eab0c29733142f88e4690ee42e6d2c2"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/grid.vtf",
+              "sha256": "f4314916bad317ce96fb5d39a0094f244a28c780466e795d9b75d046ee03abb3"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/stars.vmt",
+              "sha256": "0788e42449cffeb31ea883147f4ac5ed78243925eed1251de4c88f7a8be732aa"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/stars.vtf",
+              "sha256": "10c20f4ae534e5d55f46343631886cdcd437f1e2f83b9d2f080c74e82633cc4a"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/stripes.vmt",
+              "sha256": "fb5d406d07a732478c6d210651352fbd0e4919504cd870e4d234e2840e075582"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/stripes.vtf",
+              "sha256": "9011756d197fb3d171e1d151b133870a27df78645f898eba2007d3f93b32d820"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/zigzag.vmt",
+              "sha256": "b35ad81ab1a2213609509ee50210e408efcbcf54a0507c06abd8d1dda87e38f9"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/zigzag.vtf",
+              "sha256": "6987a5112e60b6762973811130495811c9b375ddc151dd8ba74f65d5b26d4601"
+            }
+          ],
+          "url": "https://github.com/the-schwilliam/SkateGM/releases/download/6.0/skategm_6.0.zip",
+          "sha256": "0be7c461077b17a5b54eddcc6ca1e767f3babb90fdeb92c4f50a9a534cd88f93",
+          "size": 10703590
+        },
+        {
+          "src": "skategm_6.0.zip",
+          "dst": "{game}/garrysmod/addons/skategm",
+          "root": "skategm",
+          "unpack": true,
+          "contents": [
+            {
+              "path": "gmcl_skategm_win64.dll",
+              "sha256": "e9c19ef1a5e267aa690afaaf9049d7090e2febdb101bd63f6d4ac649ab45b579"
+            },
+            {
+              "path": "skategm_sdl2.dll",
+              "sha256": "b37740a72a7a9706216df9f0134894bb7a850b356fd149398c67d874cbcfacb4"
+            },
+            {
+              "path": "skategm_gamecontrollerdb.txt",
+              "sha256": "e606134678e6b3fdbdec9081289a1f0ba3e25d53b59b2aa3cdfe69bf491ad18f"
+            },
+            {
+              "path": "licenses/SDL2-LICENSE.txt",
+              "sha256": "97f35b302b361680ec1e891e95d2d52097bb95abff361434916d99dc1305f127"
+            },
+            {
+              "path": "licenses/SDL2-README.txt",
+              "sha256": "f17d8919136f9627468b4dffbd7bddd188ef2aaa8ed21914d2107d1c759e99d7"
+            },
+            {
+              "path": "licenses/SDL_GameControllerDB-LICENSE.txt",
+              "sha256": "97f35b302b361680ec1e891e95d2d52097bb95abff361434916d99dc1305f127"
+            },
+            {
+              "path": "exporter/README.md",
+              "sha256": "9338a06b2b5387d5543c7079b78e19dc011e3fa84ac63f3846eae4851496d818"
+            },
+            {
+              "path": "exporter/build.ps1",
+              "sha256": "b2b7ce4cce64c7829d476ac5754ea9531cba370c140c3c4bc08022f77e059421"
+            },
+            {
+              "path": "exporter/convert.py",
+              "sha256": "78cbff757f2200e0accf68c9a185c4740b5e4d487794ba2dfcb6925e632df1a0"
+            },
+            {
+              "path": "exporter/xiso.py",
+              "sha256": "051977241436a1780f2215fafaace641d7c5c0c2b47ea0cad0d47b53737d0ee0"
+            },
+            {
+              "path": "exporter/tools/add_onboard_ik_targets.py",
+              "sha256": "50814a3839971d7a8449aaf2c1b20d91a7a585cc291c9271d1595803616abf84"
+            },
+            {
+              "path": "exporter/tools/analyse_performance_trace.py",
+              "sha256": "7e1b9ddeeba4f95c19ca4e3a7aba54f9bee436e17fc2232e06599333bf1605d7"
+            },
+            {
+              "path": "exporter/tools/apply_default_skater_materials.py",
+              "sha256": "bcd6799d37e2c71be12f3d6c12682f8c7098bf389215f9000fea5f5664bd7a13"
+            },
+            {
+              "path": "exporter/tools/default_skater_retail_manifest.json",
+              "sha256": "9badc387a65cdb11224496e1335b93a61568d99dc7aec2154a23e98cb0e8f1c5"
+            },
+            {
+              "path": "exporter/tools/export_bevy_glb.py",
+              "sha256": "274f18901f8e4568252c91b52dd24368297f35667c29f526ba642489f9e77d30"
+            },
+            {
+              "path": "exporter/tools/export_kart_rider.py",
+              "sha256": "4342caef6a33944d7766ae22ea48975ca1194f241e9b8d1727ac1693eb831675"
+            },
+            {
+              "path": "exporter/tools/extract_default_skater.py",
+              "sha256": "6b2564368139842943c50c1506298024f646f0998f4cdb3782f5063339a6f590"
+            },
+            {
+              "path": "exporter/tools/extract_session_marker.py",
+              "sha256": "cab8092c5c7d6d4e5365135d69eac08e627d497bf7e42461ce1e42969c49dcb5"
+            },
+            {
+              "path": "exporter/tools/fit_kart_animation_preview.py",
+              "sha256": "d06e0bbb287fa028d3b2b78eb6f4f4a2008333147e197b88ca7df1071c6ebe2b"
+            },
+            {
+              "path": "exporter/tools/install_prepared_hud.py",
+              "sha256": "fce7b470133698a1cfdd06be00531827afac7438fff4d866169fcbef0a49e839"
+            },
+            {
+              "path": "exporter/tools/make_collision_fixture.py",
+              "sha256": "fc263e317aaac937fc3cec3d67df93b09a52dab9ae83d0612c6a8b99b2fda183"
+            },
+            {
+              "path": "exporter/tools/make_skate_demo.py",
+              "sha256": "1a4a35a87fcc4c0435be2cf2064b7ba23f685b7ac8469899e42595273f4c5340"
+            },
+            {
+              "path": "exporter/tools/package_mod.py",
+              "sha256": "d27e01f847cf6fdabd5e727096085cf3a8cf2acf709f24a0abd8d6026b1600c0"
+            },
+            {
+              "path": "exporter/tools/prepare_assets.py",
+              "sha256": "7fcdbe52755e739e568735f1f16074461f4656c46cd516fd47d52161b1439a4d"
+            },
+            {
+              "path": "exporter/tools/prepare_hud.py",
+              "sha256": "10b7f626d7cc11c8cbd7bdfdc0e1a4c7bc81a85c54cd369e8a5dd55df84f4f8c"
+            },
+            {
+              "path": "exporter/tools/prepare_mario_kart.py",
+              "sha256": "cc2295082546f137e48d74beb13a3ff3504d6afb058e3613a1ae4468d0cb17b6"
+            },
+            {
+              "path": "exporter/tools/prepare_runtime_huds.py",
+              "sha256": "b283bec387fe64ad3799e9b66a4d0e52111b4853d1461b02530627d58aa83a9b"
+            },
+            {
+              "path": "exporter/tools/preview_mixamo_animation.py",
+              "sha256": "71ed0da86c5ffcf738a7fee64c7a2033b2d653cdd93f4f4da8f022d7ea59a98d"
+            },
+            {
+              "path": "exporter/tools/publish_experimental.py",
+              "sha256": "e4b3361c71f716d94a7dcc5b7d0405efaeb43607eb7a8966afbcbce7ac89d1ad"
+            },
+            {
+              "path": "exporter/tools/requirements-setup.txt",
+              "sha256": "f76a1c323230a7b495ea35d9ab5817f7556d9273be8365de7bb791618b49215b"
+            },
+            {
+              "path": "exporter/tools/setup.py",
+              "sha256": "546c4ddb05d6b5f4dcbb373b711b7d2e716f494a8d68b8f74f6bc4cb38726607"
+            },
+            {
+              "path": "exporter/tools/update_install.py",
+              "sha256": "ae2b349f312e50b406b8a2e07221cd70e866c9587286a3d4680116fe25bd6381"
+            },
+            {
+              "path": "exporter/tools/update_processes.py",
+              "sha256": "d6107a0d58628db5f87d03e9c290e25a6bbdc21035a8d747afd8c708fb988938"
+            },
+            {
+              "path": "exporter/tools/updater.py",
+              "sha256": "25f77c4a4077cb80befdb39bf8ea9d7e0a5e68b62d070aed24e82fce554b9d5a"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/asset_exports.py",
+              "sha256": "240960903703825bca7af79908afac053ef0752454a598e690d050f0475313d1"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/backdrop.py",
+              "sha256": "bc805c77e615f66b4244d0999178b6e7cc774493a0af8cc0ccc944282027237f"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/build_map.py",
+              "sha256": "6b782d8cbb88fcbe718f4194b9b1a5a51ece3901b28b01567d9929c79c1b0505"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/character_glb.py",
+              "sha256": "849dc6cf04d0fd5c0ab1392f8f0472ecd2fd9f36b09221b0cf0683b26bf52cbf"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/character_lighting.py",
+              "sha256": "ce932f2e54ac02d8f6dac4fa312b8917a2c9f160240fb320022d3eaf76179328"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/customisation_catalog.py",
+              "sha256": "676548596e5d49b7843b424e30f07e1df81699c45d6b6799a34760a22287a3f0"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/customisation_library.py",
+              "sha256": "e0ed9f3b445156e749c25b7773c6df469ba1bbe4336261079641033795784fc5"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/customisation_native.py",
+              "sha256": "a877d2092640ab9b5f2c44f95009ef1338ae10d5335fed21a77ef40a821bec1b"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/customisation_profiles.py",
+              "sha256": "5185b0214f0b37404da190f760d4ea907a133e9b098f08c00b0337e5acd93b6f"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/customisation_worker.py",
+              "sha256": "d0a38207b2a2a25d31232935ffba56590f14e1587ae3c7a6326b3413ef9fcc7d"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/customiser_cache.py",
+              "sha256": "b0dc586a104e2e64b91f6d366d245fdc50ce6a0fb2de9bec2aa54754bd193206"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/customiser_lighting.py",
+              "sha256": "9a3b8ff8a349950f29220a6330ddc33b67336bddc8995ac94a70a955fc6f9649"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/customiser_setup.py",
+              "sha256": "7322d19562ae799f1410aecc746993172d8cbd27ac1e82aa99b47855d00181eb"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/dynamic_props.py",
+              "sha256": "801449244b7ddc13909938ed2888dc5158a37fd5fccd8d8c0df67ed89b46d8ca"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/environment.py",
+              "sha256": "8b01683f52cd5d0949474724602aa567f20aa02fe46d0b77540d893e0832e105"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/fast_refpack.py",
+              "sha256": "edcc5d550c8b57209783b7191308bf0948c450b40dcfe8b823c1e3b45f1d7650"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/finish_character.py",
+              "sha256": "f145685ebfa95d39d96eb52cc595b6faf63bb3b945a06b46944e9fbcb4a58c32"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/group_receipts.py",
+              "sha256": "4b2eb88e74da95f569bfe88dab6a06e4c3f7a78a5622101ecef015f38366105d"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/install.py",
+              "sha256": "100e632cee63d3bacff6bf7fea05456d6fae772599228df4b02e2ad3dac5ab89"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/irradiance.py",
+              "sha256": "1dba4dcab123f7056456cf2861d19c283b83dacae1d8c21e1549b798cfbe0fdc"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/librefpack.dll.a",
+              "sha256": "f709bf3d2f9af33263cccc21d966857f1084d3cb49531aaa14859bf143c8cf29"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/map_job.py",
+              "sha256": "f581de435abf7d9f745f5ddf5be1aa7ef91ddb6db356cf9e1106570596cc4bed"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/map_writer.py",
+              "sha256": "df86b87b95256ba02079d73053fe4bb2a3a3d6e35c6e39f1adb541a4d386e00a"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/marquee_assets.py",
+              "sha256": "bede9b78576e495023ea585b530a45e1a1f2f5d1c4b5c47be512e3f13ff99301"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/names.txt",
+              "sha256": "571019f08521e838604ff2faaa9300ccf69fe79833579206aab0f75c6f06f4f1"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/native_roster.py",
+              "sha256": "8167f9a276a83fb7a0199f070e25784fbfb376952ca424635f5d8857ded63ffb"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/ocean_pca.py",
+              "sha256": "a85418d87a3e8b33685a7bf310dc5cca9eff608728bc59d10065d2badad44efc"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/optional_content.py",
+              "sha256": "fbceace65c8d2e6c40a3c35a4bd8c64344541dc8fdf6e37b48f45ff20dfe98e0"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/physics_skeleton.py",
+              "sha256": "e645252206c68272655bd03b83c3d4736e98b2addf4f62b5ff79017498aaea7d"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/pipeline-equivalence.json",
+              "sha256": "394ff8669da560b77f76a6afac2836ca75830c4e493d8189374c84e1fa71798c"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/refpack_native.rs",
+              "sha256": "86a7b3f8580c515c03823ab89c79199ee7707c109b582c9dac6866060440c8c4"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/refresh_textures.py",
+              "sha256": "127899724adf5b4815ea8f9244d7b5c368b66cc913e3d81ea8c46f6dd667581b"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/render_parameters.py",
+              "sha256": "c2cd43ce6d01ae5757aff246bb44b2e81c983a07ecd31c97bbad74477579f59c"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/retail_character.py",
+              "sha256": "e37cbf63236894f1520e0d29df9642903353eee4d1cd427a44c0497cf1d711c0"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/retail_material.py",
+              "sha256": "27cfce7154e3779dbfaef35e58f727b405022c8ac501f65fdd9939055220829e"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/setup_state.py",
+              "sha256": "ca6739d4697bfe7d413e2e3760590b9542b2744fc974396fdd2f3a489579abb1"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/sky.py",
+              "sha256": "5d462335473dd130a8bcf22af93307a30079bf1050c52226d48640eb921fc442"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/teleports.py",
+              "sha256": "ce626e5314b7532fed04201e3ffa47ebb4a2bd0a5e87daaef1e44ac738b610d7"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/versions.py",
+              "sha256": "6e079d4d1ce64deb96fe3afc6cc704dda30fb034e2eef08208f9122eab75407d"
+            },
+            {
+              "path": "exporter/tools/asset_pipeline/vlt.py",
+              "sha256": "32cc8867925dfd161764e1ca8b5a5d86f0005664e36adb40500b99a3851cd249"
+            },
+            {
+              "path": "exporter/tools/mixamo_to_skate/check_package.py",
+              "sha256": "1b329813e77fbb7b1d19f24102f73e5ab52051cad68adb2202d784612e7ef491"
+            },
+            {
+              "path": "exporter/tools/mixamo_to_skate/converter.py",
+              "sha256": "b4a148995d850755151da2069b8e78c51b02003f5c6078515ddbd4a4c57e4f34"
+            },
+            {
+              "path": "exporter/tools/mixamo_to_skate/glb.py",
+              "sha256": "bd965171233948d8bc526253d7e9a168f4b885ec290fc4d6803e0597b33094b9"
+            },
+            {
+              "path": "exporter/tools/mixamo_to_skate/library_import.py",
+              "sha256": "ae959e53d346aae10377bfd9fb1f7dcc24f99e70703da4a3ac3b833aecc2268c"
+            },
+            {
+              "path": "exporter/tools/mixamo_to_skate/main.py",
+              "sha256": "2d3df47aae9e2a2911fb583eb2093be49867638025cba0ba783c198633bcfbd9"
+            },
+            {
+              "path": "exporter/tools/mixamo_to_skate/requirements.txt",
+              "sha256": "7c1cc912ac6f6cbcfd990d304cb9f59dd0841e9bbcdc07e40016b2aa115a038d"
+            },
+            {
+              "path": "exporter/tools/mixamo_to_skate/licenses/FBX2glTF.txt",
+              "sha256": "57e5156fcb2255e86198d74908887b3ab4b485f30a36c5e1a3340d1809e2af20"
+            },
+            {
+              "path": "exporter/tools/owned_game/NOTICE.md",
+              "sha256": "7a0ad758cd892613aef262a9a348ebc839d6fb32dcfedfb977b7a4241baf9cb0"
+            },
+            {
+              "path": "exporter/tools/owned_game/__init__.py",
+              "sha256": "2762c590d0c14b5f2c173ed47c9e3b969da2bb2a75bfd385b8f044e81136b6aa"
+            },
+            {
+              "path": "exporter/tools/owned_game/big.py",
+              "sha256": "a47362adb20b9af3bdef02c75639e812b336ad7f10f13f8512f26264d49318f0"
+            },
+            {
+              "path": "exporter/tools/owned_game/binary.py",
+              "sha256": "a9894e0cc7746a88c7f4c13a5af3b01b15b689fc3a7655dc408ca4c4e0586561"
+            },
+            {
+              "path": "exporter/tools/owned_game/refpack.py",
+              "sha256": "90ada65e5ad63ffbb1b579a18d1e5d9c02e1375fe0bb47ca6295be6a6bed3878"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_anim/PROVENANCE.md",
+              "sha256": "99b92b75a0b35e48f7db5d30aab99020a1f89d2bda846c15871f9981ca91d9cb"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_anim/abin_importer.py",
+              "sha256": "03fa5b17d2396c6dc516b322cc35829d631707ece0f6f9f9354bbe45126f5280"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_anim/rx2_skeleton.py",
+              "sha256": "8f77df4f96ab3af6a8c542cb88906c7bbd8c86c999e7c30998327f7f04e1dc8e"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/LICENSE",
+              "sha256": "3158217ea104a2982957e3d36e409fe3d8318b35f2641ed8a17025c0126f939f"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/__init__.py",
+              "sha256": "7a67cc4a972354cfb23ce555fab9fe6555689a586f2dacd06a348db865020a78"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/actions.py",
+              "sha256": "92c73fa541c82cc85a7250d7dfb6a90ce8d773d25e3a7a9a52cfef47a8cd51da"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/apt.py",
+              "sha256": "3fe4c10e414396455bdc0b6a3bdc43fd6fd10a2cb98010222be87597395f5725"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/big.py",
+              "sha256": "a8d7850745399b35ce1b5a0d50a87596ab0f6f728e41717b3d24ebc673b970df"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/binary.py",
+              "sha256": "49306002d19dcf2b9fbefb65ff8140c6168178c0c46cb864101d597cdd542295"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/bitmap_font.py",
+              "sha256": "15e46104913c2351baf372626f44cc7cbf4eb503396af5024db49e142aee06f0"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/geo.py",
+              "sha256": "002358ca56d161b565ee1002d2c214a566138aa61a0fc06068a0ae0591a87529"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/language.py",
+              "sha256": "7b91e57b5e2a09cf2a2cc0f5b47fb29ca964f675b4fc1f9e89c0c8b2888d9dd2"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/project.py",
+              "sha256": "6519e2bd20db2be4740b1254fdeec8f73a422f230c8e027c15b33f9701a8b2c3"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/refpack.py",
+              "sha256": "7f409b61756b1eb1ada139346f7c7a40428c3c943d6a686ab01dcbd0f3337bb8"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/rw4.py",
+              "sha256": "f7126bc08476724fa2c270af3a207bec4dff13acf92f3a9efb23d04fd2ee6d25"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/scene_graph.py",
+              "sha256": "910f61bbe0cabe68e9cf4c8582dd773833049a4627b282133687a7f9744fa899"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/timeline.py",
+              "sha256": "3e04522e2051cb08c4d0b2d9781e542fc1957600487e17cbf3d16594aab2209c"
+            },
+            {
+              "path": "exporter/tools/vendor/skate3_ui/xenos.py",
+              "sha256": "8e1f8233a44a7291f1f26a0abe98adfe33bcdb93d24f4e011330afa815b53ba2"
+            },
+            {
+              "path": "exporter/tools/vendor/university/LICENSE-PROJECT.md",
+              "sha256": "3158217ea104a2982957e3d36e409fe3d8318b35f2641ed8a17025c0126f939f"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/analyze_retail_world_frames.py",
+              "sha256": "24b3287803b81bf315226d78df23aa044e03b92b67e73a21aa987c97736cc0c6"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/analyze_skate2_lightmap_basis.py",
+              "sha256": "307e5004e75d01353afc171926016376ffc0b8792cc0974e343295f4e983a88a"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/attach_retail_collision_identity.py",
+              "sha256": "c28d48ed682a66c2b4de213a5cf7855ec59f012502d3011cebfde1afd77c8b60"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/audit_university_collision.py",
+              "sha256": "a80fc2d253d7a0582fec9308f93cc6e17ca619684a4af05903195a6c292107a6"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/build_retail_collision_archive.py",
+              "sha256": "58722c4e5cb63d27aeeb7297f2f8433641bc79db3f87fffd497dbb0941bba688"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/build_skate2_lightmap_aliases.py",
+              "sha256": "28a25288dbe26cc1ca2ad97e36bdbe22ad6a5f8c6eeedbd64e1117082715ec3d"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/build_university_collision_probe.py",
+              "sha256": "329e544840dd860415a7a2061107a7beec0fbae8eb380509e1626d360436cc16"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/compare_university_material_fix.py",
+              "sha256": "08ddbc541eadc1dbe0789223fbcdc6570dbd387c8467673f6d296165cb0b6d8e"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/embed_retail_collision_archive.py",
+              "sha256": "f6ea2c957e9686cf7b59d37d3166d772d71b7eaf3d90c4c13c7a12f2827039b3"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/export_skate2_skybox.py",
+              "sha256": "e23cb8d4e98f0c3c957d1e1b79f177291fea512a7aad4ab96debb9cddf49278d"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/extract_skate2_big4.py",
+              "sha256": "0cbd02dee7f5d9a6d5e348326bcfa94b7caccc8dc7b0a4e31f5ea5f0e9389038"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/extract_skate2_shader_ucode.py",
+              "sha256": "ac94c9edc12c57c9fbf24fcad52608137a13469ed89bc7d958310f868e21e024"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/inspect_university_point.py",
+              "sha256": "2cc2664be5863feb5ed56a562a05671c86e6a4b9999e13c6532fd90dc42742e0"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/prepare_hawaiian_dream.py",
+              "sha256": "3841ade96639c49209608a9f92e37d99c7f90875ebb064c493c4304fec725cfb"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/prepare_mega_park.py",
+              "sha256": "7c335a95b39dc954e66302fed565b6d225374d3669c6cab0b54cfadb3e27b1ef"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/prepare_skate2_bam.py",
+              "sha256": "4f00402d0b0fb77530221202cbb5c8a4911f2159a0d514255cd008cf7270a3d4"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/prepare_university.py",
+              "sha256": "02d2d6a49532a39a25d0987278ae5d1e854e473ea847c536ab0bfd78c59f4098"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/retail_collision_mesh.py",
+              "sha256": "edac10dff9ffa9163e3ac9fcc9ac3b38e4b5ff0c4908252a164091330c810b7f"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/retail_grind_splines.py",
+              "sha256": "cd18c15683292f8e527e2ada87f8e0bf2dc6788d63ef74967810699ac8603759"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/retail_lightmap_uv.py",
+              "sha256": "6e455e4830161028855a34a691bd8af0cb9253ae31f2db9f0052f515c2c20cc7"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/retail_texture_decode.py",
+              "sha256": "133f1f64b7de9af0a00ba2a5dce035afe61b281d33b77c880a942e6594572b27"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/skate3_streams.py",
+              "sha256": "18d5b6e860259e5ca2348d902d8ecacb3f52318217d682f2b8bc6c3ffd1e0975"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/verify_skate2_lightmaps.py",
+              "sha256": "f42c13935ce93a1d1fa66bbbf361af737699e7f0f840c8452235f7644f29c85b"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/verify_university_b5g6r5.py",
+              "sha256": "f9a496dbf9bafd7bbdcd90be495a4bb8a28ca5d60aeb330c9a5aefd7505d1720"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/verify_university_collision.py",
+              "sha256": "73e8ec01c3fe86345ee567611e2655e55a6ea10a3e6af5b0eb749e9a13f214e1"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/verify_university_grinds.py",
+              "sha256": "3f00702194104546ed4b524265ae1893ed530b50f8edec9990dd3b035b6748d2"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/verify_university_lightmaps.py",
+              "sha256": "a6c4d54ecd508f2bcf52d0bd3a80b5cb2d67c5c29fd4cd530d7e57761633288c"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/verify_university_material_channels.py",
+              "sha256": "b93cecb4f5e43f44f29ccef553fbf9adcbee9df761ec3d72bdab8145c1df7ba4"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/verify_university_retail_materials.py",
+              "sha256": "180a61cf2b2f6c1ca1beb23b170b836564fb1b25658d6a0bea2b82825b44f030"
+            },
+            {
+              "path": "exporter/tools/vendor/university/tools/vanilla_map_extraction/tools/verify_university_world_frames.py",
+              "sha256": "d6562e30c775830ad3739173249975c024244e9fa2b0fa8b79ebf29bdf3d389d"
+            },
+            {
+              "path": "exporter/tools/vendor/utt/LICENSE",
+              "sha256": "042d55c27d3dbf5847cd222e9a468d1e8ae0fda35337d5d0fc14e9da5b70e6bd"
+            },
+            {
+              "path": "exporter/tools/vendor/utt/rx2_fast.py",
+              "sha256": "38daf5c28cb4caa2cbcd54603c7e219418c1c19fc234e540d5778160009058c1"
+            },
+            {
+              "path": "exporter/tools/vendor/utt/rx2_parser.py",
+              "sha256": "9afe28cae8fc16bb698f482d12d3c5928f175b0286cb643da6af2b4caa7c7925"
+            },
+            {
+              "path": "exporter/tools/vendor/utt/mdl_parser/__init__.py",
+              "sha256": "1c0dbdaea00e0dbe37af40b92f75e039356f5ae1824fcb89056ad78fc19bc55a"
+            },
+            {
+              "path": "exporter/tools/vendor/utt/mdl_parser/errors.py",
+              "sha256": "08721922297814974194cabb4b925d13a773d420e1abb72d07167a3288f0cdda"
+            },
+            {
+              "path": "exporter/tools/vendor/utt/mdl_parser/model.py",
+              "sha256": "4627ed47c04f000e91117883e9bd272e3930cd8cddd6bd304380eefc943ffcf6"
+            },
+            {
+              "path": "exporter/tools/vendor/utt/mdl_parser/parser.py",
+              "sha256": "c9a88edcd3ed525b4ab56824edefb543b1bfe15610d594ec0352e99d3f480a60"
+            },
+            {
+              "path": "LICENSE-THIRD-PARTY.md",
+              "sha256": "ed04bc7159bb8ffd3d3ad147b092f116b8bfe96e81621884df49196c62c79321"
+            },
+            {
+              "path": "engine/LICENSE",
+              "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+            },
+            {
+              "path": "engine/NOTICE-mashup",
+              "sha256": "df07306477d8728ff4771e5692050e01df3b0d2df7f461a27749fe2c7b44ff2c"
+            },
+            {
+              "path": "engine/README.md",
+              "sha256": "9519fa1a42f099469cd42a7e0aec6f6a51258723dab6f267fa1b782aa76c1f79"
+            },
+            {
+              "path": "README.md",
+              "sha256": "10f33a9bf2ba054682aea863674671604342e1b986db892ccf68ea2513074d35"
+            },
+            {
+              "path": "skategm/addon.json",
+              "sha256": "86498dd0d03aa5de9d1df9212c2f899151d957306eb0d71aea60aa846f8e2e28"
+            },
+            {
+              "path": "skategm/gamemodes/skategm/icon24.png",
+              "sha256": "37e20a7595e0448f0b07dca74fbb846a3365a60d583cc8d9dc44a9ccd205447e"
+            },
+            {
+              "path": "skategm/gamemodes/skategm/logo.png",
+              "sha256": "454e72b437acfbf615bb88c7c312b6eac82883fee49d2d8e669e2f49c2d6f1e3"
+            },
+            {
+              "path": "skategm/gamemodes/skategm/skategm.txt",
+              "sha256": "5033a958df8a267444378e1a76958e0fd73352e19c0375a19b8cf9da7d0c3f4c"
+            },
+            {
+              "path": "skategm/gamemodes/skategm/gamemode/cl_init.lua",
+              "sha256": "db40b0e6016606d53d7c038740256d62ee587fe33c690841993a8dcb0ac3bc8a"
+            },
+            {
+              "path": "skategm/gamemodes/skategm/gamemode/init.lua",
+              "sha256": "85444c319aa34de7c73b215a9a26096e86cb216c32afe464aa8b117b97959678"
+            },
+            {
+              "path": "skategm/gamemodes/skategm/gamemode/shared.lua",
+              "sha256": "006bb7d44607cab23784a65db5a1ecafe65fb5c3a64e227992f2ce052b98eebd"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_bingo_load.lua",
+              "sha256": "22b83bf071451469607f4352a62a13ec247adc08daaa16e1cbfb891b8f38e116"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_board_load.lua",
+              "sha256": "80153027e4d17f0137ad69831018597e29fec72f39bfcf38992237eada4b5621"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_boombox_load.lua",
+              "sha256": "44c05ac72f6ba65547a51ee41f241081f88df0f036803064ff4ef8437f313336"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_hom_load.lua",
+              "sha256": "5128fe6ac6d0b321f98e34b9d5e5b9f301845445f494afe9d5fed64f86bdd06a"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_knock_load.lua",
+              "sha256": "f6be7607e4afbcb8f022dce223f4ad76203c092bc4d0289b73a16a813d6668ba"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_melon_load.lua",
+              "sha256": "5b5c69ea964d469ad79a442950784348816c066119ed7d01869c4b7583107138"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_modes_load.lua",
+              "sha256": "77fba6bacd7500bfff853b4b5a4bdf8711ed9a51bd7a09b8ef58ad6f0bf27c34"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_ots_load.lua",
+              "sha256": "7a255972e4fdf7373c7eec3a83782b24afbd145f23505051f4e4951f4e3286ee"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_parts_load.lua",
+              "sha256": "45c42e19da1fa6ef7029b27cf98172964ab5656d489f11bbb5dcc33be09de65a"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_potato_load.lua",
+              "sha256": "62ee69cd055e2dc7c146541467c06f5cc2404818d6a706fe0f99454dc1e51213"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_race_load.lua",
+              "sha256": "1066779f788b60dad5b52d9e12a8261cd7af4b2386b5144f285798279aec4cad"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_royale_load.lua",
+              "sha256": "e10d77d841b72facd3a63610691de9912e0d3ad115722f8fa6979b00a1eef4cc"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_snake_load.lua",
+              "sha256": "f645c80cddeaf713c917175e568bad5091daa5cb09e40b56de99f9b2b78589dc"
+            },
+            {
+              "path": "skategm/lua/autorun/skategm_ui_load.lua",
+              "sha256": "8e15a03ddeda8a2522911d5cfcbec8eaa388df8422b38ed3487943f4194df900"
+            },
+            {
+              "path": "skategm/lua/autorun/client/skategm_cl.lua",
+              "sha256": "cfad1a32d07b1d0735a0b63befbbf41330438cb89a93a4f2f07953de0535e86a"
+            },
+            {
+              "path": "skategm/lua/autorun/server/skategm_sv.lua",
+              "sha256": "5d767b93e5e34839029e3aff0150328a9bfd85f97227201fa74726dd1ec5a2e5"
+            },
+            {
+              "path": "skategm/lua/entities/skategm_boombox.lua",
+              "sha256": "53e7ba23435be5f6a80d37d3e456346e6e4467d994ee0edc3a80651c6d899160"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_board_model.lua",
+              "sha256": "3141133fd700c9489014159a14a031945172f94e889c066e8071dda91bb738d8"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_hud.lua",
+              "sha256": "e71a92e930881a26f5477656eb9d5971b08d162e798a6c5282503f7c3bf6e3cf"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_infmap.lua",
+              "sha256": "ff841563a64600398578611ff908be6fde6e7b91115756121ab4c57cb926d405"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_marker.lua",
+              "sha256": "14058cfb9829e1053d37e19465a1216fa9fcc89184328ce0dc19a5c89fa56aa0"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_replay.lua",
+              "sha256": "4978e2fa1b1e62cd49eef5007f04b59d76de73fbb3f4caa044ebf7627b00a5ca"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_replay_cam.lua",
+              "sha256": "58d96a1181f6caba0f8a02870e2f78964ec09fae397168e652e97e0ea6651f4c"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_replay_export.lua",
+              "sha256": "6b4b00f3e2c23b24f6871bf3cb632e24afa42942f7e5b4369ae2b3a79aef45f0"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_replay_fx.lua",
+              "sha256": "759751614918c8d8494d6bb94b085cf9dee428d6507ceb5ead59ef28f6b03ea6"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_settings.lua",
+              "sha256": "31d6498d3e37125d2342997f4ac7bf5304842caced611a57f7096c015a6fd70a"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_sound.lua",
+              "sha256": "ee255cec13207feb5cce6f046577f4d631ad341bdd565a30f074ac20537c4e8a"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_trace.lua",
+              "sha256": "ca949f62a4485f7b5ace713f6aed40a888148a3029cdbe7458f78f68bdbc41ae"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_water.lua",
+              "sha256": "0c8e2f759e5c0eb510e54e61402c23beb1105bf8111a5968e9ee6a986a9ce7b6"
+            },
+            {
+              "path": "skategm/lua/skategm/cl_why.lua",
+              "sha256": "e7d7ef473f3c9433f4d7b6e4c3fb71735d5ce4fc7260f5d2786c3b7131829aee"
+            },
+            {
+              "path": "skategm/lua/skategm/sv_infmap.lua",
+              "sha256": "a4af4b149b8f73ce5ac84b4ac0b56a9a470b1e62de286042f1e6745acaf51210"
+            },
+            {
+              "path": "skategm/lua/skategm_bingo/cl_bingo.lua",
+              "sha256": "869b42ec19abe6d74f9b67044021e50378eeb8c56be41b9c5832e8e1af11bab1"
+            },
+            {
+              "path": "skategm/lua/skategm_bingo/sh_bingo.lua",
+              "sha256": "c749cf9a0e376e71e4639922d98011c21c397d31d5750a02aa42c86839c65b2e"
+            },
+            {
+              "path": "skategm/lua/skategm_bingo/sv_bingo.lua",
+              "sha256": "46bc885bab7465493d4b3895a1498886ffd9a5169e1e8ab9ee02f449de83f326"
+            },
+            {
+              "path": "skategm/lua/skategm_board/cl_board.lua",
+              "sha256": "891464e8aafe2d116a93b741f8b22ac8f5fe8dd9e8254eb572399e79124dc878"
+            },
+            {
+              "path": "skategm/lua/skategm_board/sh_board.lua",
+              "sha256": "874de472c5f79ce1989e97224aac5845d07387e04ff82bf536854d5c39289871"
+            },
+            {
+              "path": "skategm/lua/skategm_board/sv_board.lua",
+              "sha256": "06c1f6a0657f96828cd878bfcf63c6d939a9cd90722191392f2c1c157db09028"
+            },
+            {
+              "path": "skategm/lua/skategm_boards/classic.lua",
+              "sha256": "10e5d4fc05481ac73df83c9e671013dd706f1ef26f29e1653d4a0b9d58d7066b"
+            },
+            {
+              "path": "skategm/lua/skategm_boombox/stations.lua",
+              "sha256": "476b7b58441a815c63392a26ff95944a02c212d188ba4c16d472cbeb5f1eb77e"
+            },
+            {
+              "path": "skategm/lua/skategm_fx/sparks.lua",
+              "sha256": "1c15f817e2582bf10b4e149d5ec36d7e9bb3839fcf6006e3b202e01716f593da"
+            },
+            {
+              "path": "skategm/lua/skategm_fx/trails.lua",
+              "sha256": "33bd6adf43339087d289d5bb4571a16505597c317d2c0cfad4778539b508c40d"
+            },
+            {
+              "path": "skategm/lua/skategm_fx/underglow.lua",
+              "sha256": "81bfb8354ff773b4061bd603045684d01b42ed4abd6e5a8a8a1c1c5cf8b495e6"
+            },
+            {
+              "path": "skategm/lua/skategm_hom/cl_hom.lua",
+              "sha256": "9cf248afd59d0f41861738a1568e14eaa9234ee67cc3319e5006acf1c0afa03b"
+            },
+            {
+              "path": "skategm/lua/skategm_hom/sh_hom.lua",
+              "sha256": "3cede9bdf0f78afe904605d63108ff230b34ffc8045b2608b0492298732a368c"
+            },
+            {
+              "path": "skategm/lua/skategm_hom/sv_hom.lua",
+              "sha256": "050a622672ff271746a5a8f80f3f757b88c9b39227ea994a810951d3bb04d672"
+            },
+            {
+              "path": "skategm/lua/skategm_knock/cl_knock.lua",
+              "sha256": "e33e443d497b5606c8372e2bc4dee3f4b36cc8f420ea847ffd4e85703ce827ea"
+            },
+            {
+              "path": "skategm/lua/skategm_knock/sh_knock.lua",
+              "sha256": "dfc9755ee1dfc88a66dbaca647ee116dc40ee485ea0219b10e1d08684a578c03"
+            },
+            {
+              "path": "skategm/lua/skategm_knock/sv_knock.lua",
+              "sha256": "f8390a0ccf8879342c7c2143e4e551e2bdfa2ece4680a6e65fa25d1888638cea"
+            },
+            {
+              "path": "skategm/lua/skategm_melon/cl_melon.lua",
+              "sha256": "948870d01a0558006ccd2a90d13de87a8b63921dabded910de35eb54d8aec3fd"
+            },
+            {
+              "path": "skategm/lua/skategm_melon/sh_melon.lua",
+              "sha256": "2b7c293ffac2e67182e8687987ec6948fe644dc2e55685b2f7c0e02c961e60ae"
+            },
+            {
+              "path": "skategm/lua/skategm_melon/sv_melon.lua",
+              "sha256": "00982c680560b7a07ccb09de5782b9869b9428d9aa21f12e52ed296105fe051b"
+            },
+            {
+              "path": "skategm/lua/skategm_modes/cl_menu.lua",
+              "sha256": "e7a48de215ba1b6cdc0bfb2a3e8acd20a3bcaf96c528c7b0eb588897ea1167f0"
+            },
+            {
+              "path": "skategm/lua/skategm_modes/sh_modes.lua",
+              "sha256": "7582ba3b2d1ee6746bd2f55054a48ebfed45900cbde34d1c65569cef0a6987b5"
+            },
+            {
+              "path": "skategm/lua/skategm_ots/cl_ots.lua",
+              "sha256": "e039cac1b0d6d79492e88f076c99e5ffe11ec3eb84c30c7dda3114d445f08903"
+            },
+            {
+              "path": "skategm/lua/skategm_ots/sh_ots.lua",
+              "sha256": "d63d1b047f93b250553229af0de28c95077aa4214aa526da9ca0bda11d212cdf"
+            },
+            {
+              "path": "skategm/lua/skategm_ots/sv_ots.lua",
+              "sha256": "23a0d4a065570ba468733136bef526075e718fa65c15802757a32e3d2632b823"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/cl_editor.lua",
+              "sha256": "5240fc1d6e0ceae84525edd5195c7b529a526d172b18f4fcd1862870a3c9a3ee"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/cl_park.lua",
+              "sha256": "572065aacbe11f00ba0822e18a9692942e0b19ae7c4b19908947a327139c7a86"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/cl_saves.lua",
+              "sha256": "5b5be7e873117eaafffc0e1aab5fe472afa8238ed45463b842010dfafe86297f"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/sh_parts.lua",
+              "sha256": "7dc863cca7a5d6f4e0c0d3f894965a8a82beec3d2108ecdc6f3fc20542157ad2"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/sv_editor.lua",
+              "sha256": "173c2111c659e3574917a3d0cf31dc3354c47d7e7dab8467ee555a0944efa581"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/sv_park.lua",
+              "sha256": "253055fd6c4913efd31ef04ad353e40aa2ac38b884794433a83e49a854b66f3f"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/bank.lua",
+              "sha256": "3f1b48d3b068598f1eb0d17eea3c4e9be0298a640dc6269be99dd863118f85e8"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/deck.lua",
+              "sha256": "52488e381ad3bb99bb59a0abf0922fee632527a868e7b7ff5e36678a3f034f2b"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/flat_bar.lua",
+              "sha256": "444a6d10969ed06c0a41c8feeb7a6c5ea93c8213e4d534bed83c2894150d91d4"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/funbox.lua",
+              "sha256": "773f17b480c46ebc1c3b838ca7fc7159011501e7ef02ce8b223a47bd62915bf7"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/half_pipe.lua",
+              "sha256": "9b72f837e0f7a5bf7420df3203a510637e54c58430788bb09c2aa5e5e7d83c66"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/kicker.lua",
+              "sha256": "409717102f6cdde54edd82846724b8fc265314cec9191176b217703272895904"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/launch_ramp.lua",
+              "sha256": "03c90283e63487f1cad562d7a8c57f1d99eaa0590c1c58d4216144207c3d137c"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/ledge.lua",
+              "sha256": "70566f1641405987ca9e6a5702c22c9a5b61abcae21d7093a01b88033c019139"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/manual_pad.lua",
+              "sha256": "550d577b56fc18c3189df710ef96148b29d7177b237ef7fefc1b0118b166e455"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/quarter_pipe.lua",
+              "sha256": "13d2988f59f20e995f094be2423893a1b54d52c05f315b79be2eb435bbe5752e"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/spine.lua",
+              "sha256": "924b31f70209e5e2ba911cc282f6085f2a3aef01312c42db70d6125a69ed540e"
+            },
+            {
+              "path": "skategm/lua/skategm_parts/parts/stairs.lua",
+              "sha256": "38ab75560ea9b7bd7e705e18d7f7b38bbcd6849e55ea22b1dd8157226500e82d"
+            },
+            {
+              "path": "skategm/lua/skategm_potato/cl_potato.lua",
+              "sha256": "632aa5e29367875758c989477d7a5aa09923b169e52bc485dc44f26dccc314b5"
+            },
+            {
+              "path": "skategm/lua/skategm_potato/sh_potato.lua",
+              "sha256": "f5e982bfe5ab064efe313ebf0a5eb56e40d3982819303a381ad9d0f0707167c5"
+            },
+            {
+              "path": "skategm/lua/skategm_potato/sv_potato.lua",
+              "sha256": "3c8d16b768cd7cb0e72293d98326e0f6c038e465d344917f6190f161d15493e2"
+            },
+            {
+              "path": "skategm/lua/skategm_race/cl_race.lua",
+              "sha256": "d94b2fd3940cbbbb4f348fb6745505e0ad4381ab61be2608f40caa5c5f4d4c4f"
+            },
+            {
+              "path": "skategm/lua/skategm_race/sh_race.lua",
+              "sha256": "e08cc9eee2dcd846aa0faad6549079f55ffa86f5e41efbb0fcdbbf82d4b8fc07"
+            },
+            {
+              "path": "skategm/lua/skategm_race/sv_race.lua",
+              "sha256": "e16778825632f176701b835d3c604b639696260206b66a58e6b47639f4316da7"
+            },
+            {
+              "path": "skategm/lua/skategm_royale/cl_royale.lua",
+              "sha256": "ece37b6756d8d99fbb9b1fd4e6dd0204862ff285bbe6079b5082d5c68db0c41d"
+            },
+            {
+              "path": "skategm/lua/skategm_royale/sh_royale.lua",
+              "sha256": "d7dddaf8e17ade8990c8929cc72187ff2a45629ee62ba8d73a30ed1d11048646"
+            },
+            {
+              "path": "skategm/lua/skategm_royale/sv_royale.lua",
+              "sha256": "ac73071737a3d405cbebb4d2ea6c792dceb3e75a6df90c63ce776fdc58fb5f7b"
+            },
+            {
+              "path": "skategm/lua/skategm_snake/cl_snake.lua",
+              "sha256": "265a7556342388f46bff4d5afd4af3011b970aeee832788abaaba2a5b9709caf"
+            },
+            {
+              "path": "skategm/lua/skategm_snake/sh_snake.lua",
+              "sha256": "83f09d8f4968c4f1507d7a86b548a10a3dc3b97b0327c34390e4570b2bbcd20b"
+            },
+            {
+              "path": "skategm/lua/skategm_snake/sv_snake.lua",
+              "sha256": "965f2d1896f1c536c67a4d8ebb7bb827c09a7549c639388249a1173caa1216c2"
+            },
+            {
+              "path": "skategm/lua/skategm_ui/cl_map.lua",
+              "sha256": "8246f93af49dd9398620018175934e874a69e650d8dec044d0109b0e3f018f4d"
+            },
+            {
+              "path": "skategm/lua/skategm_ui/cl_pad.lua",
+              "sha256": "28ff9be686289973cbe3482222de7fed56f1864484127ec9665616898349676f"
+            },
+            {
+              "path": "skategm/lua/skategm_ui/cl_settings.lua",
+              "sha256": "c60ae21f95a58bcbf94f88cf18bb9675d858232cf97426c26a34aab2550a35be"
+            },
+            {
+              "path": "skategm/maps/sgm_warehouse.bsp",
+              "sha256": "85ef3cab3acae175a35ba8fca28fa89215493f435b2c0afcf4f73f3cbe66a903"
+            },
+            {
+              "path": "skategm/maps/thumb/sgm_warehouse.png",
+              "sha256": "5be2e281e2d366c4d704367bea18b6e68bfd0394ceeb224f54517b4101f7d62b"
+            },
+            {
+              "path": "skategm/materials/skategm/logo.png",
+              "sha256": "454e72b437acfbf615bb88c7c312b6eac82883fee49d2d8e669e2f49c2d6f1e3"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/camo.vmt",
+              "sha256": "f7c54de5dbca2fd3a98f80840744b270a504ec83725b5debd27d374e50b09bd7"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/camo.vtf",
+              "sha256": "416ea47528c4d8d05e204d7280a17dcb39d47cc8d1c53ca75ce0df02edc64135"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/checker.vmt",
+              "sha256": "615eee7ff589d6a0bd7aecb64bdd66a385df1c5ced6d0c5a8d79083c7442312f"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/checker.vtf",
+              "sha256": "98a48c47eedcdc1ae7f928d21bb6a2446d9fbca4de42bac292c9c3dcf5cdf5ce"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/diagonal.vmt",
+              "sha256": "391b5ce436c4932aa1ac27fdd8d777ba03714384cbe57434d8caf3fec9ba37ba"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/diagonal.vtf",
+              "sha256": "24d8d7dcb6bb5d8cf49fb0faebf491505a7b98eb14890c28b972453498e50093"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/dots.vmt",
+              "sha256": "87250b90a69fb3f1ddc9b172ff92e007304884f7f901fb64773d1a4f393ae865"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/dots.vtf",
+              "sha256": "ae2cbce804c7544ed03120a91be0a15e8effa763f0d499a3211dcb2d5aae7d87"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/grid.vmt",
+              "sha256": "396b5a358e5c8a7c862d6e8d7a2f34845eab0c29733142f88e4690ee42e6d2c2"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/grid.vtf",
+              "sha256": "f4314916bad317ce96fb5d39a0094f244a28c780466e795d9b75d046ee03abb3"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/stars.vmt",
+              "sha256": "0788e42449cffeb31ea883147f4ac5ed78243925eed1251de4c88f7a8be732aa"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/stars.vtf",
+              "sha256": "10c20f4ae534e5d55f46343631886cdcd437f1e2f83b9d2f080c74e82633cc4a"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/stripes.vmt",
+              "sha256": "fb5d406d07a732478c6d210651352fbd0e4919504cd870e4d234e2840e075582"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/stripes.vtf",
+              "sha256": "9011756d197fb3d171e1d151b133870a27df78645f898eba2007d3f93b32d820"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/zigzag.vmt",
+              "sha256": "b35ad81ab1a2213609509ee50210e408efcbcf54a0507c06abd8d1dda87e38f9"
+            },
+            {
+              "path": "skategm/materials/skategm/grip/zigzag.vtf",
+              "sha256": "6987a5112e60b6762973811130495811c9b375ddc151dd8ba74f65d5b26d4601"
+            }
+          ],
+          "url": "https://github.com/the-schwilliam/SkateGM/releases/download/6.0/skategm_6.0.zip",
+          "sha256": "0be7c461077b17a5b54eddcc6ca1e767f3babb90fdeb92c4f50a9a534cd88f93",
+          "size": 10703590
+        }
+      ]
+    }
+  ],
+  "launch": [
+    {
+      "game": "gmod",
+      "args": []
+    }
+  ],
+  "files": [
+    {
+      "name": "skategm_6.0.zip",
+      "url": "https://github.com/the-schwilliam/SkateGM/releases/download/6.0/skategm_6.0.zip",
+      "sha256": "0be7c461077b17a5b54eddcc6ca1e767f3babb90fdeb92c4f50a9a534cd88f93",
+      "size": 10703590
+    }
+  ],
+  "source": {
+    "repo": "https://github.com/the-schwilliam/SkateGM",
+    "license": "No root license (upstream download)",
+    "upstream_license": null,
+    "fetch": "upstream",
+    "tag": "6.0",
+    "commit": "e369716463d47cce9db80ec4f866bbd578d0c9bf",
+    "hosted": "https://github.com/SIGFAI/skategm",
+    "parts": [
+      {
+        "name": "engine/ (Skate 3 engine reimplementation)",
+        "license": "Apache-2.0",
+        "repo": "https://github.com/chasmlol/2010-rust-rewrite-mashup"
+      },
+      {
+        "name": "SK8-ENGINE converter tools",
+        "commit": "cb7968930f14dad38457e98720d1a274e469eec2",
+        "repo": "https://github.com/SK8-ENGINE/skate-3-rust-engine"
+      },
+      {
+        "name": "SDL2 2.32.10",
+        "license": "Zlib"
+      }
+    ]
+  },
+  "media": {},
+  "built_by": {
+    "author": "the-schwilliam",
+    "authors": [
+      "the-schwilliam",
+      "SK8-ENGINE contributors",
+      "chasmlol",
+      "duckyinnit"
+    ],
+    "packaged_by": "SIGF"
+  },
+  "idea_by": "the-schwilliam",
+  "built_at": "2026-10-05T00:00:00.000Z",
+  "status": "beta",
+  "issues": "https://github.com/the-schwilliam/SkateGM/issues",
+  "notes": [
+    "You need Garry's Mod on Steam switched to the x86-64 branch (Properties > Betas > x86-64), a controller, and your own copy of Skate 3 for the Xbox 360 (a disc image .iso you made from your disc, or an extracted folder holding default.xex). Windows only.",
+    "Turn off Steam Input for Garry's Mod (Properties > Controller > Disable Steam Input): it fixes most controller problems.",
+    "Once, before playing, convert your Skate 3 on your PC (nothing is downloaded and nothing from Skate 3 is shipped). Either: install Python 3, run \"pip install numpy Pillow\", then \"python <Garry's Mod folder>\\garrysmod\\lua\\bin\\exporter\\convert.py --xex \"<your Skate 3 .iso or default.xex>\" --out C:/skategm\" (SkateGM reads C:/skategm/assets; another folder works with skategm_data \"<folder>/assets\" in the console). Or: run the author's SkateGM-Setup-6.0.exe from the release page and press Install; it converts into %LOCALAPPDATA%\\SkateGM\\data.",
+    "The converted data stays outside the game folder and Restore does not delete it (C:/skategm, or %LOCALAPPDATA%\\SkateGM\\data plus garrysmod\\data\\skategm\\datapath.txt with the author's setup). Delete it yourself if you want it gone.",
+    "The app installs the add-on into garrysmod\\addons\\skategm and the engine module, SDL2 and the controller database into garrysmod\\lua\\bin (the rest of the author's zip, including the converter, sits beside them, unused by the game); Restore removes them.",
+    "Play: pick the SkateGM gamemode, or in any other gamemode type \"bind j skategm_toggle\" in the console once and press J. The first start takes a while to load. Hold LB for the extras (markers, minigames, settings, park editor, replays).",
+    "Multiplayer is Garry's Mod's own: every skater needs the mod and their own converted Skate 3; a dedicated server needs only the skategm add-on folder. Some antivirus tools flag the engine module because it is a native DLL in the game folder (the author's issue #1: a false positive).",
+    "Beta with open bugs (controller not detected after a crash, custom player models jitter, no option to turn off the airtime limit): report bugs to the author on the upstream issue tracker."
+  ]
+}
