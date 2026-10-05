@@ -2224,13 +2224,11 @@
   "status": "beta",
   "issues": "https://github.com/the-schwilliam/SkateGM/issues",
   "notes": [
-    "You need Garry's Mod on Steam switched to the x86-64 branch (Properties > Betas > x86-64), a controller, and your own copy of Skate 3 for the Xbox 360 (a disc image .iso you made from your disc, or an extracted folder holding default.xex). Windows only.",
-    "Turn off Steam Input for Garry's Mod (Properties > Controller > Disable Steam Input): it fixes most controller problems.",
-    "Once, before playing, convert your Skate 3 on your PC (nothing is downloaded and nothing from Skate 3 is shipped). Either: install Python 3, run \"pip install numpy Pillow\", then \"python <Garry's Mod folder>\\garrysmod\\lua\\bin\\exporter\\convert.py --xex \"<your Skate 3 .iso or default.xex>\" --out C:/skategm\" (SkateGM reads C:/skategm/assets; another folder works with skategm_data \"<folder>/assets\" in the console). Or: run the author's SkateGM-Setup-6.0.exe from the release page and press Install; it converts into %LOCALAPPDATA%\\SkateGM\\data.",
-    "The converted data stays outside the game folder and Restore does not delete it (C:/skategm, or %LOCALAPPDATA%\\SkateGM\\data plus garrysmod\\data\\skategm\\datapath.txt with the author's setup). Delete it yourself if you want it gone.",
-    "The app installs the add-on into garrysmod\\addons\\skategm and the engine module, SDL2 and the controller database into garrysmod\\lua\\bin (the rest of the author's zip, including the converter, sits beside them, unused by the game); Restore removes them.",
-    "Play: pick the SkateGM gamemode, or in any other gamemode type \"bind j skategm_toggle\" in the console once and press J. The first start takes a while to load. Hold LB for the extras (markers, minigames, settings, park editor, replays).",
-    "Multiplayer is Garry's Mod's own: every skater needs the mod and their own converted Skate 3; a dedicated server needs only the skategm add-on folder. Some antivirus tools flag the engine module because it is a native DLL in the game folder (the author's issue #1: a false positive).",
+    "How it works: you skate in Garry's Mod with Skate 3's board physics, flick-it tricks and scoring, on any map and with friends, plus minigames, a park editor, replays and a skating gamemode. Skate 3's data comes from your own copy, converted on your PC.",
+    "Once, before playing, convert your Skate 3: either run the author's SkateGM-Setup-6.0.exe (release page) and press Install, or with Python 3 run \"pip install numpy Pillow\" then \"python <Garry's Mod>\\garrysmod\\lua\\bin\\exporter\\convert.py --xex <your .iso or default.xex> --out C:/skategm\".",
+    "Press Play, then pick the SkateGM gamemode, or in any gamemode type \"bind j skategm_toggle\" in the console once and press J (first start loads slowly). Controller only, Skate 3's controls; hold LB for extras: X respawn, B park editor, A settings, D-pad left minigames, RB replays.",
+    "You need Garry's Mod on Steam's x86-64 branch (Properties > Betas), Windows, a controller with Steam Input off for Garry's Mod (Properties > Controller), and your own Skate 3 for Xbox 360 (a disc image .iso you made, or a folder with default.xex).",
+    "Restore removes the add-on and module, not your converted data (C:/skategm, or %LOCALAPPDATA%\\SkateGM\\data with the setup): delete it yourself. In multiplayer every skater needs the mod and their own converted Skate 3. Some antivirus tools flag the module (a false positive, per the author).",
     "Beta with open bugs (controller not detected after a crash, custom player models jitter, no option to turn off the airtime limit): report bugs to the author on the upstream issue tracker."
   ]
 }
