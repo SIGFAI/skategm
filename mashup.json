@@ -3,6 +3,12 @@
   "version": "6.0.0",
   "name": "SkateGM",
   "tagline": "Skate 3 in Garry's Mod: Skate 3's board physics, flick-it tricks and scoring on any map, with friends, minigames, a park editor and a skating gamemode.",
+  "how_to_play": [
+    "Skate any Garry's Mod map with Skate 3's board physics, flick-it tricks and scoring, alone or with friends.",
+    "Skating is controller only with Skate 3's controls; hold LB for extras: X respawn, B park editor, A settings, RB replays.",
+    "Hold LB and press D-pad left for minigames.",
+    "Press Play and pick the SkateGM gamemode, or in any gamemode type bind j skategm_toggle in the console once and press J."
+  ],
   "kind": "mashup",
   "games": [
     {
